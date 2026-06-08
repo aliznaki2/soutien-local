@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cahier des Charges — SoutienLocal</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --blue: #2563eb;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .cover {
+            background: linear-gradient(135deg, #1e3a8a, #1d4ed8, #7c3aed);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cover h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .cover h2 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            opacity: .85;
+            margin-bottom: 30px;
+        }
+
+        .cover .badge {
+            background: rgba(255, 255, 255, .15);
+            border: 1px solid rgba(255, 255, 255, .3);
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-size: .9rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .toc {
+            background: white;
+            max-width: 900px;
+            margin: 40px auto;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, .06);
+        }
+
+        .toc h2 {
+            color: var(--blue);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .toc ol {
+            padding-left: 20px;
+        }
+
+        .toc li {
+            padding: 6px 0;
+            font-size: 1rem;
+        }
+
+        .toc a {
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: var(--blue);
+        }
+
+        section {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, .06);
+        }
+
+        h2.sec {
+            font-size: 1.6rem;
+            color: var(--blue);
+            border-left: 4px solid var(--blue);
+            padding-left: 14px;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            color: #334155;
+            margin: 24px 0 12px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #475569;
+            margin-bottom: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: .92rem;
+        }
+
+        th {
+            background: var(--blue);
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .mermaid {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow: auto;
+            border: 1px solid var(--border);
+        }
+
+        .gantt-wrap {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        .gantt-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+            font-size: .85rem;
+        }
+
+        .gantt-table th {
+            background: #1e3a8a;
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .gantt-table td {
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .gantt-bar {
+            height: 20px;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .bar-blue {
+            background: #3b82f6;
+        }
+
+        .bar-purple {
+            background: #8b5cf6;
+        }
+
+        .bar-green {
+            background: #10b981;
+        }
+
+        .bar-orange {
+            background: #f59e0b;
+        }
+
+        .pert-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .pert-node {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pert-node h4 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .pert-node .dur {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .pert-node .lbl {
+            font-size: .75rem;
+            opacity: .8;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .tech-card {
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .tech-card .ico {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .tech-card h4 {
+            font-size: .9rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .tech-card p {
+            font-size: .8rem;
+            color: var(--gray);
+        }
+
+        .req-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .req-list li {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            border-left: 4px solid var(--blue);
+            background: #eff6ff;
+            font-size: .95rem;
+        }
+
+        .req-list li.sec-req {
+            border-color: #7c3aed;
+            background: #f5f3ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--gray);
+            font-size: .9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cover">
+        <div class="badge">📘 Cahier des Charges Technique</div>
+        <div style="font-size: 1.1rem; margin: 15px 0; font-weight: 300;">
+            Rapport de Projet Informatique<br>
+            Développement Web Full-Stack<br>
+            Conception et Réalisation d'une Plateforme Web
+        </div>
+        <h1>SoutienLocal</h1>
+        <h2>Plateforme de mise en relation Élève–Tuteur</h2>
+        <p style="opacity:.7;margin-top:20px;">Version 1.0 — Mai 2026 | React 19 + Laravel 12 + MySQL</p>
+    </div>
+
+    <div class="toc">
+        <h2>📋 Table des matières</h2>
+        <ol>
+            <li><a href="#contexte">Contexte & Objectifs</a></li>
+            <li><a href="#acteurs">Acteurs du système</a></li>
+            <li><a href="#besoins">Besoins fonctionnels & non-fonctionnels</a></li>
+            <li><a href="#usecase">Diagramme de cas d'utilisation</a></li>
+            <li><a href="#classe">Diagramme de classes</a></li>
+            <li><a href="#sequence">Diagrammes de séquence</a></li>
+            <li><a href="#pert">Diagramme PERT</a></li>
+            <li><a href="#gantt">Diagramme de Gantt</a></li>
+            <li><a href="#tech">Stack technique</a></li>
+            <li><a href="#api">Architecture API</a></li>
+        </ol>
+    </div>
+
+    <!-- 1. Contexte -->
+    <section id="contexte">
+        <h2 class="sec">1. Contexte & Objectifs</h2>
+        <p><strong>SoutienLocal</strong> est une plateforme web de mise en relation entre des élèves cherchant un
+            soutien scolaire et des tuteurs qualifiés disponibles localement. Le projet vise à digitaliser ce processus
+            en offrant une interface moderne, sécurisée et accessible depuis tout navigateur web.</p>
+        <h3>Objectifs principaux</h3>
+        <table>
+            <tr>
+                <th>Objectif</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Mise en relation</td>
+                <td>Permettre aux élèves de trouver et de réserver des tuteurs selon matière, ville, niveau et tarif.
+                </td>
+            </tr>
+            <tr>
+                <td>Gestion des réservations</td>
+                <td>Système de réservation avec confirmation, annulation et suivi de statut.</td>
+            </tr>
+            <tr>
+                <td>Espace personnel</td>
+                <td>Tableau de bord élève, favoris, historique, profil éditable.</td>
+            </tr>
+            <tr>
+                <td>Administration</td>
+                <td>Panel admin sécurisé pour gérer tuteurs et réservations.</td>
+            </tr>
+            <tr>
+                <td>Sécurité</td>
+                <td>Authentification via Laravel Sanctum, contrôle d'accès par rôle (admin/élève/tuteur).</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- 2. Acteurs -->
+    <section id="acteurs">
+        <h2 class="sec">2. Acteurs du système</h2>
+        <table>
+            <tr>
+                <th>Acteur</th>
+                <th>Rôle</th>
+                <th>Accès</th>
+            </tr>
+            <tr>
+                <td>🎓 Élève</td>
+                <td>Cherche et réserve des tuteurs, laisse des avis</td>
+                <td>Pages protégées après connexion</td>
+            </tr>
+            <tr>
+                <td>👨‍🏫 Tuteur</td>
+                <td>Propose ses services, gère ses disponibilités</td>
+                <td>Profil public visible, espace dédié</td>
+            </tr>
+            <tr>
+                <td>🔐 Administrateur</td>
+                <td>Gère toute la plateforme (admin@gmail.com uniquement)</td>
+                <td>Panel /admin — accès exclusif admin</td>
+            </tr>
+            <tr>
+                <td>👤 Visiteur</td>
+                <td>Navigue sans compte (redirigé vers /login)</td>
+                <td>Page de connexion/inscription uniquement</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- 3. Besoins -->
+    <section id="besoins">
+        <h2 class="sec">3. Besoins fonctionnels & non-fonctionnels</h2>
+        <h3>Besoins fonctionnels (prioritaires)</h3>
+        <ul class="req-list">
+            <li>F1 — Inscription et connexion sécurisée (JWT via Sanctum)</li>
+            <li>F2 — Recherche de tuteurs par matière, ville, niveau, prix, note</li>
+            <li>F3 — Consultation du profil complet d'un tuteur</li>
+            <li>F4 — Réservation d'une séance avec sélection de date/heure/matière</li>
+            <li>F5 — Suivi des réservations (En attente / Confirmée / Annulée)</li>
+            <li>F6 — Gestion des favoris (ajout/suppression)</li>
+            <li>F7 — Tableau de bord élève avec statistiques personnelles</li>
+            <li>F8 — Système d'avis et notes sur les tuteurs</li>
+            <li>F9 — Messagerie simulée entre élève et tuteur</li>
+            <li>F10 — Centre de notifications</li>
+            <li>F11 — Édition du profil utilisateur (nom, email, mot de passe)</li>
+        </ul>
+        <h3>Besoins admin</h3>
+        <ul class="req-list">
+            <li class="sec-req">A1 — Tableau de bord avec KPIs (tuteurs, utilisateurs, réservations)</li>
+            <li class="sec-req">A2 — Gestion des tuteurs (activer/désactiver)</li>
+            <li class="sec-req">A3 — Gestion des réservations (confirmer/annuler)</li>
+        </ul>
+        <h3>Besoins non-fonctionnels</h3>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Exigence</th>
+            </tr>
+            <tr>
+                <td>Performance</td>
+                <td>Chargement des pages &lt; 2s, API &lt; 500ms</td>
+            </tr>
+            <tr>
+                <td>Sécurité</td>
+                <td>Authentification Bearer Token, CORS configuré, CSRF protégé</td>
+            </tr>
+            <tr>
+                <td>Disponibilité</td>
+                <td>99% uptime, gestion des erreurs API avec fallback local</td>
+            </tr>
+            <tr>
+                <td>Responsive</td>
+                <td>Compatible mobile, tablette, desktop</td>
+            </tr>
+            <tr>
+                <td>Maintenabilité</td>
+                <td>Architecture MVC Laravel + composants React réutilisables</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- 4. Use Case -->
+    <section id="usecase">
+        <h2 class="sec">4. Diagramme de cas d'utilisation</h2>
+        <div class="mermaid">
+            graph LR
+            V["👤 Visiteur"] --> UC0["S'inscrire"]
+            V --> UC00["Se connecter"]
+
+            E["🎓 Élève"] --> UC1["Rechercher un tuteur"]
+            E --> UC2["Voir profil tuteur"]
+            E --> UC3["Réserver une séance"]
+            E --> UC4["Gérer mes réservations"]
+            E --> UC5["Gérer mes favoris"]
+            E --> UC6["Laisser un avis"]
+            E --> UC7["Mon tableau de bord"]
+            E --> UC8["Messagerie"]
+            E --> UC9["Modifier mon profil"]
+            E --> UC10["Notifications"]
+
+            T["👨‍🏫 Tuteur"] --> UC2
+
+            A["🔐 Admin"] --> UC12["Dashboard admin"]
+            A --> UC13["Gérer tuteurs"]
+            A --> UC14["Gérer réservations"]
+
+            style A fill:#7c3aed,color:white
+            style E fill:#2563eb,color:white
+            style T fill:#059669,color:white
+            style V fill:#64748b,color:white
+        </div>
+    </section>
+
+    <!-- 5. Classe -->
+    <section id="classe">
+        <h2 class="sec">5. Diagramme de classes</h2>
+        <div class="mermaid">
+            classDiagram
+            class User {
+            +int id
+            +string name
+            +string email
+            +string password
+            +string role
+            +hasMany bookings()
+            +hasOne tutor()
+            +updateProfile()
+            +studentStats()
+            }
+
+            class Tutor {
+            +int id
+            +string name
+            +array subjects
+            +string level
+            +string city
+            +decimal price
+            +decimal rating
+            +string bio
+            +string experience
+            +array languages
+            +string education
+            +string method
+            +int user_id
+            +belongsTo user()
+            +hasMany bookings()
+            }
+
+            class Booking {
+            +int id
+            +int user_id
+            +int tutor_id
+            +date date
+            +string time
+            +string subject
+            +string message
+            +string status
+            +belongsTo user()
+            +belongsTo tutor()
+            }
+
+            class Review {
+            +int id
+            +int user_id
+            +int tutor_id
+            +int rating
+            +string comment
+            +belongsTo user()
+            +belongsTo tutor()
+            }
+
+            User "1" --> "0..*" Booking : passe
+            Tutor "1" --> "0..*" Booking : reçoit
+            User "1" --> "0..1" Tutor : est
+            User "1" --> "0..*" Review : rédige
+            Tutor "1" --> "0..*" Review : reçoit
+        </div>
+    </section>
+
+    <!-- 6. Séquence -->
+    <section id="sequence">
+        <h2 class="sec">6. Diagrammes de séquence</h2>
+        <h3>6.1 — Connexion utilisateur</h3>
+        <div class="mermaid">
+            sequenceDiagram
+            actor E as Élève
+            participant UI as React Frontend
+            participant API as Laravel API
+            participant DB as MySQL
+
+            E->>UI: Saisit email + mot de passe
+            UI->>API: POST /api/login
+            API->>DB: SELECT user WHERE email=?
+            DB-->>API: User trouvé
+            API->>API: Hash::check(password)
+            API->>DB: createToken('auth_token')
+            DB-->>API: Token généré
+            API-->>UI: {user, token}
+            UI->>UI: localStorage.setItem(token)
+            UI-->>E: Redirection vers /
+        </div>
+
+        <h3>6.2 — Réservation d'une séance</h3>
+        <div class="mermaid">
+            sequenceDiagram
+            actor E as Élève
+            participant UI as React Frontend
+            participant API as Laravel API
+            participant DB as MySQL
+
+            E->>UI: Clique "Réserver" sur un tuteur
+            UI->>UI: Ouvre BookingModal
+            E->>UI: Saisit date, heure, matière, message
+            UI->>API: POST /api/bookings (Bearer token)
+            API->>API: Auth::user() + validate()
+            API->>DB: INSERT booking (status=pending)
+            DB-->>API: Booking créé
+            API-->>UI: {data: booking, message}
+            UI-->>E: Écran de confirmation
+        </div>
+
+        <h3>6.3 — Admin confirme une réservation</h3>
+        <div class="mermaid">
+            sequenceDiagram
+            actor A as Admin
+            participant UI as React Admin Panel
+            participant API as Laravel API
+            participant DB as MySQL
+
+            A->>UI: Accède à /admin (Réservations tab)
+            UI->>API: GET /api/admin/bookings (Bearer token)
+            API->>DB: SELECT bookings WITH user, tutor
+            DB-->>API: Liste bookings
+            API-->>UI: {data: [...]}
+            UI-->>A: Tableau des réservations
+            A->>UI: Clique "Confirmer"
+            UI->>API: PUT /api/admin/bookings/{id} {status:confirmed}
+            API->>DB: UPDATE booking SET status=confirmed
+            DB-->>API: OK
+            API-->>UI: Booking mis à jour
+            UI-->>A: Badge vert "Confirmée"
+        </div>
+    </section>
+
+    <!-- 7. PERT -->
+    <section id="pert">
+        <h2 class="sec">7. Diagramme PERT</h2>
+        <p>Représentation des tâches du projet et leurs dépendances :</p>
+        <div class="mermaid">
+            graph LR
+            T0(["🚀 Début"]) --> T1["T1: Analyse besoins\n3 jours"]
+            T1 --> T2["T2: Design UI/UX\n4 jours"]
+            T1 --> T3["T3: Setup Laravel\n2 jours"]
+            T2 --> T4["T4: Frontend Pages\n7 jours"]
+            T3 --> T5["T5: API REST\n5 jours"]
+            T3 --> T6["T6: Base de données\n2 jours"]
+            T6 --> T5
+            T4 --> T7["T7: Intégration\n3 jours"]
+            T5 --> T7
+            T7 --> T8["T8: Auth & Sécurité\n2 jours"]
+            T8 --> T9["T9: Admin Panel\n3 jours"]
+            T9 --> T10["T10: Tests\n3 jours"]
+            T10 --> T11(["✅ Livraison"])
+
+            style T0 fill:#1e3a8a,color:white
+            style T11 fill:#059669,color:white
+            style T8 fill:#dc2626,color:white
+        </div>
+
+        <h3>Tableau PERT — Durées & Chemins</h3>
+        <div class="pert-box">
+            <div class="pert-node">
+                <h4>Analyse</h4>
+                <div class="dur">3j</div>
+                <div class="lbl">T1</div>
+            </div>
+            <div class="pert-node" style="background:linear-gradient(135deg,#5b21b6,#7c3aed)">
+                <h4>Design UI</h4>
+                <div class="dur">4j</div>
+                <div class="lbl">T2</div>
+            </div>
+            <div class="pert-node" style="background:linear-gradient(135deg,#065f46,#059669)">
+                <h4>Backend API</h4>
+                <div class="dur">5j</div>
+                <div class="lbl">T5</div>
+            </div>
+            <div class="pert-node" style="background:linear-gradient(135deg,#92400e,#d97706)">
+                <h4>Frontend</h4>
+                <div class="dur">7j</div>
+                <div class="lbl">T4</div>
+            </div>
+            <div class="pert-node" style="background:linear-gradient(135deg,#991b1b,#dc2626)">
+                <h4>Auth/Sécurité</h4>
+                <div class="dur">2j</div>
+                <div class="lbl">T8 — Critique</div>
+            </div>
+            <div class="pert-node" style="background:linear-gradient(135deg,#1e3a8a,#1d4ed8)">
+                <h4>Admin Panel</h4>
+                <div class="dur">3j</div>
+                <div class="lbl">T9</div>
+            </div>
+            <div class="pert-node" style="background:linear-gradient(135deg,#374151,#6b7280)">
+                <h4>Tests</h4>
+                <div class="dur">3j</div>
+                <div class="lbl">T10</div>
+            </div>
+            <div class="pert-node" style="background:linear-gradient(135deg,#065f46,#10b981)">
+                <h4>Durée Totale</h4>
+                <div class="dur">28j</div>
+                <div class="lbl">Chemin critique</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Gantt -->
+    <section id="gantt">
+        <h2 class="sec">8. Diagramme de Gantt</h2>
+        <div class="mermaid">
+            gantt
+            title Planning SoutienLocal — 4 semaines
+            dateFormat YYYY-MM-DD
+            section Phase 1 - Analyse
+            Analyse des besoins :done, t1, 2026-05-01, 3d
+            Modélisation BDD :done, t2, 2026-05-03, 2d
+            section Phase 2 - Design
+            Maquettes UI/UX :done, t3, 2026-05-03, 4d
+            Design système CSS :done, t4, 2026-05-05, 3d
+            section Phase 3 - Backend
+            Setup Laravel + Sanctum :done, t5, 2026-05-05, 2d
+            Migrations & Seeders :done, t6, 2026-05-06, 2d
+            API Auth (login/register) :done, t7, 2026-05-07, 2d
+            API Tuteurs & Réservations :done, t8, 2026-05-08, 3d
+            API Admin & Reviews :done, t9, 2026-05-09, 2d
+            section Phase 4 - Frontend
+            Pages Auth (Login/Register):done, t10, 2026-05-06, 2d
+            Page Accueil & Recherche :done, t11, 2026-05-07, 3d
+            Profil Tuteur + Avis :done, t12, 2026-05-09, 2d
+            Réservations & Dashboard :done, t13, 2026-05-10, 3d
+            Admin Dashboard :done, t14, 2026-05-11, 3d
+            Chat & Favoris & Notifs :done, t15, 2026-05-12, 3d
+            section Phase 5 - Tests
+            Tests & Corrections :active, t16, 2026-05-14, 3d
+            Livraison finale :t17, 2026-05-16, 1d
+        </div>
+    </section>
+
+    <!-- 9. Stack -->
+    <section id="tech">
+        <h2 class="sec">9. Stack technique</h2>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="ico">⚛️</div>
+                <h4>React 19</h4>
+                <p>Frontend SPA</p>
+            </div>
+            <div class="tech-card">
+                <div class="ico">🐘</div>
+                <h4>Laravel 12</h4>
+                <p>Backend API REST</p>
+            </div>
+            <div class="tech-card">
+                <div class="ico">🗄️</div>
+                <h4>MySQL</h4>
+                <p>Base de données</p>
+            </div>
+            <div class="tech-card">
+                <div class="ico">🔐</div>
+                <h4>Sanctum</h4>
+                <p>Authentification</p>
+            </div>
+            <div class="tech-card">
+                <div class="ico">🔗</div>
+                <h4>Axios</h4>
+                <p>Client HTTP</p>
+            </div>
+            <div class="tech-card">
+                <div class="ico">🛣️</div>
+                <h4>React Router</h4>
+                <p>Navigation SPA</p>
+            </div>
+            <div class="tech-card">
+                <div class="ico">🎨</div>
+                <h4>CSS Vanilla</h4>
+                <p>Design Premium</p>
+            </div>
+            <div class="tech-card">
+                <div class="ico">✨</div>
+                <h4>Lucide Icons</h4>
+                <p>Icônes modernes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. API -->
+    <section id="api">
+        <h2 class="sec">10. Architecture API REST</h2>
+        <table>
+            <tr>
+                <th>Méthode</th>
+                <th>Endpoint</th>
+                <th>Description</th>
+                <th>Auth</th>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/api/register</td>
+                <td>Inscription</td>
+                <td>Non</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/api/login</td>
+                <td>Connexion → token</td>
+                <td>Non</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/api/logout</td>
+                <td>Déconnexion</td>
+                <td>Oui</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/api/user</td>
+                <td>Profil connecté</td>
+                <td>Oui</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>/api/profile</td>
+                <td>Modifier profil</td>
+                <td>Oui</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/api/tutors</td>
+                <td>Liste tuteurs (filtres)</td>
+                <td>Non</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/api/tutors/{id}</td>
+                <td>Détail tuteur</td>
+                <td>Non</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/api/bookings</td>
+                <td>Mes réservations</td>
+                <td>Oui</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/api/bookings</td>
+                <td>Créer réservation</td>
+                <td>Oui</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/api/reviews/{tutorId}</td>
+                <td>Avis d'un tuteur</td>
+                <td>Non</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/api/reviews</td>
+                <td>Laisser un avis</td>
+                <td>Oui</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/api/student/stats</td>
+                <td>Stats élève</td>
+                <td>Oui</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/api/admin/stats</td>
+                <td>Stats admin</td>
+                <td>Admin</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/api/admin/bookings</td>
+                <td>Toutes réservations</td>
+                <td>Admin</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>/api/admin/bookings/{id}</td>
+                <td>Changer statut</td>
+                <td>Admin</td>
+            </tr>
+        </table>
+
+        <h3>Architecture globale</h3>
+        <div class="mermaid">
+            graph TB
+            subgraph Client["🌐 Client (localhost:3000)"]
+            R["React App\n(SPA)"]
+            end
+
+            subgraph Backend["⚙️ Backend (localhost:8000)"]
+            API["Laravel API\nroutes/api.php"]
+            AUTH["AuthController"]
+            TUTOR["TutorController"]
+            BOOKING["BookingController"]
+            REVIEW["ReviewController"]
+            SANCTUM["Sanctum\nMiddleware"]
+            end
+
+            subgraph DB["🗄️ MySQL"]
+            U["users"]
+            T["tutors"]
+            B["bookings"]
+            REV["reviews"]
+            TOK["personal_access_tokens"]
+            end
+
+            R -->|"HTTP + Bearer Token"| API
+            API --> SANCTUM
+            SANCTUM --> AUTH & TUTOR & BOOKING & REVIEW
+            AUTH --> U & TOK
+            TUTOR --> T
+            BOOKING --> B & T & U
+            REVIEW --> REV & T & U
+        </div>
+    </section>
+
+    <footer>
+        <p>📘 Cahier des Charges — <strong>SoutienLocal</strong> | Réalisé avec React 19 + Laravel 12 | Mai 2026</p>
+        <p style="margin-top:8px;font-size:.8rem;">Ali Znaki — Développeur Full Stack</p>
+    </footer>
+
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });</script>
+</body>
+
+</html>

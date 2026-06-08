@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Stage - EaneerDev</title>
+    <style>
+        /* Styles de base et typographie */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #e0e5ec;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            border: 1px #D3D3D3 solid;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* En-têtes */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Arial', sans-serif;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 24pt;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 18pt;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 14pt;
+            margin-top: 20px;
+            color: #2980b9;
+        }
+
+        h4 {
+            font-size: 12pt;
+            margin-top: 15px;
+            color: #34495e;
+        }
+
+        /* Page de garde */
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            min-height: 250mm;
+        }
+
+        .university-name {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-size: 28pt;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 40px 0;
+            border: 3px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+        }
+
+        .project-type {
+            font-size: 16pt;
+            font-style: italic;
+            margin-bottom: 60px;
+        }
+
+        .student-info {
+            font-size: 14pt;
+            margin-top: auto;
+            margin-bottom: 40px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .student-info p {
+            margin: 5px 0;
+        }
+
+        .academic-year {
+            font-size: 12pt;
+            margin-top: auto;
+        }
+
+        /* Sommaire */
+        .toc {
+            margin-top: 30px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .toc-item a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .toc-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .toc-level-1 {
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 15px;
+        }
+
+        .toc-level-2 {
+            margin-left: 20px;
+            font-size: 11pt;
+        }
+
+        .toc-level-3 {
+            margin-left: 40px;
+            font-size: 10pt;
+        }
+
+        /* Contenu */
+        p {
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 12pt;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 15px;
+            font-size: 12pt;
+        }
+
+        li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        /* Tableaux */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+
+        table th,
+        table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        /* Bloc code */
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+        }
+
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 9pt;
+            line-height: 1.4;
+            margin: 15px 0;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Encadré info */
+        .info-box {
+            background-color: var(--light-gray);
+            padding: 15px 20px;
+            border-left: 4px solid var(--secondary-color);
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            margin-bottom: 5px;
+        }
+
+        /* Figure / illustration */
+        .figure {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .figure-caption {
+            font-style: italic;
+            font-size: 10pt;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* Utilitaires d'impression */
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            @page {
+                margin: 0;
+            }
+
+            body {
+                background: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .page {
+                margin: 0;
+                border: initial;
+                border-radius: initial;
+                width: initial;
+                min-height: initial;
+                box-shadow: initial;
+                background: initial;
+                page-break-after: always;
+                padding: 2cm;
+            }
+
+            .page:last-child {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PAGE DE GARDE -->
+    <div class="page cover-page">
+        <div
+            style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-bottom: 50px; width: 100%;">
+            <img src="OFPPT.png" alt="OFPPT Logo" style="max-height: 100px; object-fit: contain;">
+            <div class="university-name" style="margin-bottom: 0; text-align: left;">
+                Office de la Formation Professionnelle<br>et de la Promotion du Travail
+            </div>
+        </div>
+
+        <div class="project-type">
+            Rapport de Stage de Fin d'Études<br>
+            Développement Digital<br>
+            Développement Front-End d'une application web
+        </div>
+
+        <div class="project-title">
+            EANEERDEV<br>
+            <span style="font-size: 16pt; font-weight: normal; color: var(--primary-color);">Conception et intégration
+                d'interfaces web modernes</span>
+        </div>
+
+        <div class="student-info">
+            <p><strong>Réalisé par :</strong> Ali Znaki</p>
+            <p><strong>Entreprise d'accueil :</strong> EaneerDev</p>
+            <p><strong>Lieu :</strong> Technopark</p>
+            <p><strong>Responsable de stage :</strong> M. Hamza Oubensalh</p>
+            <p><strong>Technologies :</strong> Next.js, Tailwind CSS, Figma</p>
+        </div>
+
+        <div class="academic-year">
+            Année de formation : 2025/2026
+        </div>
+    </div>
+
+    <!-- REMERCIEMENTS -->
+    <div class="page">
+        <h2>Remerciements</h2>
+        <p>Avant d'entamer la rédaction de ce rapport, je tiens à exprimer ma profonde gratitude à toutes les personnes
+            qui ont contribué, de près ou de loin, au bon déroulement de ce stage et à la réalisation de ce travail.</p>
+        <p>Mes remerciements les plus sincères s'adressent tout d'abord à <strong>Monsieur Hamza Oubensalh</strong>, mon
+            responsable de stage au sein de l'entreprise <strong>EaneerDev</strong>, pour m'avoir accueilli au sein de
+            son équipe. Je le remercie chaleureusement pour sa disponibilité, ses conseils judicieux, et la confiance
+            qu'il m'a accordée tout au long de cette période. Ses orientations techniques et son encadrement m'ont été
+            d'une aide précieuse pour mener à bien mes missions. Grâce à sa pédagogie et sa patience, j'ai pu progresser
+            rapidement dans la prise en main des outils et des technologies utilisées au sein de l'entreprise.</p>
+        <p>Je souhaite également adresser mes remerciements à l'ensemble du corps professoral et administratif de
+            l'<strong>OFPPT</strong>, pour la qualité de l'enseignement dispensé et pour le soutien constant qu'ils nous
+            apportent dans notre parcours de formation en Développement Digital. Leur dévouement joue un rôle
+            fondamental dans notre préparation au monde professionnel. Ils nous ont transmis les bases solides en
+            programmation, en logique algorithmique et en conception web qui m'ont permis d'aborder ce stage avec un
+            socle de compétences fiable.</p>
+        <p>Je tiens aussi à remercier l'ensemble de l'équipe technique d'EaneerDev pour leur accueil chaleureux, leur
+            esprit d'équipe et les moments de partage qui ont rendu cette expérience professionnelle particulièrement
+            enrichissante sur le plan humain. Chaque membre de l'équipe a su, à sa manière, m'apporter une perspective
+            nouvelle et des connaissances pratiques qui complètent parfaitement ma formation académique.</p>
+        <p>Enfin, je ne saurais oublier ma famille et mes amis pour leur soutien indéfectible et leurs encouragements
+            constants. Leur présence et leur confiance ont été un pilier essentiel durant toute cette période de stage.
+        </p>
+    </div>
+
+    <!-- SOMMAIRE -->
+    <div class="page">
+        <h2 style="text-align: center; border: none; margin-top: 0;">Sommaire</h2>
+        <div class="toc">
+            <div class="toc-item toc-level-1"><a href="#intro">1. Introduction</a></div>
+
+            <div class="toc-item toc-level-1"><a href="#presentation-entreprise">2. Présentation de l'environnement
+                    d'accueil</a></div>
+            <div class="toc-item toc-level-2"><a href="#technopark">2.1. Le Technopark : Un écosystème d'innovation</a>
+            </div>
+            <div class="toc-item toc-level-2"><a href="#eaneerdev">2.2. Présentation de l'entreprise EaneerDev</a></div>
+            <div class="toc-item toc-level-2"><a href="#organigramme">2.3. Organisation et structure de l'équipe</a>
+            </div>
+
+            <div class="toc-item toc-level-1"><a href="#objectifs">3. Objectifs et cadre du stage</a></div>
+            <div class="toc-item toc-level-2"><a href="#contexte-projet">3.1. Contexte et problématique du projet</a>
+            </div>
+            <div class="toc-item toc-level-2"><a href="#objectifs-specifiques">3.2. Objectifs spécifiques</a></div>
+            <div class="toc-item toc-level-2"><a href="#planning">3.3. Planning et déroulement du stage</a></div>
+
+            <div class="toc-item toc-level-1"><a href="#technologies">4. Technologies et outils utilisés</a></div>
+            <div class="toc-item toc-level-2"><a href="#figma">4.1. Figma : La base du workflow de conception</a></div>
+            <div class="toc-item toc-level-2"><a href="#nextjs">4.2. Next.js : Le framework React pour la
+                    performance</a></div>
+            <div class="toc-item toc-level-2"><a href="#tailwindcss">4.3. Tailwind CSS : Le design agile</a></div>
+            <div class="toc-item toc-level-2"><a href="#outils-complementaires">4.4. Outils complémentaires</a></div>
+
+            <div class="toc-item toc-level-1"><a href="#missions">5. Description détaillée des tâches réalisées</a>
+            </div>
+            <div class="toc-item toc-level-2"><a href="#analyse">5.1. Analyse des maquettes Figma</a></div>
+            <div class="toc-item toc-level-2"><a href="#composants">5.2. Développement et organisation des
+                    composants</a></div>
+            <div class="toc-item toc-level-2"><a href="#integration">5.3. Intégration des interfaces utilisateur</a>
+            </div>
+            <div class="toc-item toc-level-2"><a href="#responsive">5.4. Création de pages responsive</a></div>
+            <div class="toc-item toc-level-2"><a href="#correction">5.5. Correction de bugs et amélioration de
+                    l'interface</a></div>
+            <div class="toc-item toc-level-2"><a href="#optimisation">5.6. Optimisation des performances</a></div>
+
+            <div class="toc-item toc-level-1"><a href="#methodologie">6. Méthodologie de travail</a></div>
+            <div class="toc-item toc-level-2"><a href="#journee-type">6.1. Organisation d'une journée type</a></div>
+            <div class="toc-item toc-level-2"><a href="#workflow-dev">6.2. Workflow de développement</a></div>
+
+            <div class="toc-item toc-level-1"><a href="#difficultes">7. Difficultés rencontrées et solutions
+                    apportées</a></div>
+
+            <div class="toc-item toc-level-1"><a href="#competences">8. Compétences acquises et bilan professionnel</a>
+            </div>
+            <div class="toc-item toc-level-2"><a href="#hard-skills">8.1. Compétences techniques (Hard Skills)</a></div>
+            <div class="toc-item toc-level-2"><a href="#soft-skills">8.2. Compétences humaines (Soft Skills)</a></div>
+
+            <div class="toc-item toc-level-1"><a href="#conclusion">9. Conclusion générale et perspectives</a></div>
+        </div>
+    </div>
+
+    <!-- INTRODUCTION -->
+    <div class="page">
+        <h2 id="intro">1. Introduction</h2>
+        <p>Dans le cadre de ma formation en Développement Digital à l'OFPPT, j'ai eu l'opportunité d'effectuer un stage
+            de fin d'études au sein de l'entreprise <strong>EaneerDev</strong>, située au Technopark. Ce stage, qui
+            s'inscrit dans une démarche de professionnalisation, représente une étape cruciale dans mon parcours
+            académique, constituant une véritable passerelle entre les connaissances théoriques acquises durant ma
+            formation et les réalités pratiques du monde de l'entreprise.</p>
+        <p>Le secteur du développement web connaît aujourd'hui une transformation profonde et accélérée. Les
+            utilisateurs attendent des expériences numériques fluides, rapides et visuellement attrayantes, quel que
+            soit l'appareil qu'ils utilisent. Les entreprises, quant à elles, recherchent des solutions web modernes,
+            performantes et évolutives pour répondre à des besoins métiers de plus en plus complexes. Dans ce contexte,
+            le rôle du développeur Front-End est devenu central : il est le garant de la qualité de l'interface
+            utilisateur (UI) et de l'expérience utilisateur (UX), deux facteurs déterminants dans le succès d'un produit
+            numérique.</p>
+        <p>C'est dans ce cadre technologique stimulant que s'est déroulé mon stage, avec pour mission principale le
+            <strong>développement Front-End d'une application web</strong> innovante. Cette mission m'a placé au cœur du
+            processus de création, depuis la réception des maquettes de design jusqu'à la livraison d'interfaces
+            fonctionnelles, interactives et parfaitement adaptées aux standards modernes du web.
+        </p>
+        <p>Durant cette période, j'ai été pleinement intégré à l'équipe de développement d'EaneerDev, sous la
+            supervision de mon responsable, Monsieur Hamza Oubensalh. J'ai été chargé de transformer des maquettes de
+            conception réalisées sur <strong>Figma</strong> en des interfaces web fonctionnelles, interactives et
+            performantes, en utilisant des technologies de pointe telles que <strong>Next.js</strong> et
+            <strong>Tailwind CSS</strong>. Ce travail a impliqué non seulement des compétences techniques en
+            programmation, mais aussi une capacité d'analyse visuelle, un sens du détail et une compréhension
+            approfondie des principes de conception d'interfaces.
+        </p>
+        <p>Ce rapport de stage a pour vocation de retracer mon expérience professionnelle au sein d'EaneerDev de manière
+            exhaustive. Il s'articule autour de plusieurs axes majeurs : dans un premier temps, une présentation
+            détaillée de l'environnement d'accueil, notamment l'entreprise et le Technopark. Ensuite, je détaillerai les
+            objectifs de mon stage, le planning suivi et les technologies employées. La partie centrale sera consacrée à
+            la description approfondie des missions qui m'ont été confiées, allant de l'analyse des maquettes à
+            l'intégration finale, en passant par la méthodologie de travail adoptée. Enfin, je ferai un bilan complet
+            sur les difficultés rencontrées, les solutions apportées, ainsi que sur les compétences techniques et
+            humaines acquises au cours de cette expérience formatrice, avant de conclure par mes perspectives d'avenir.
+        </p>
+    </div>
+
+    <!-- PRESENTATION DE L'ENTREPRISE -->
+    <div class="page">
+        <h2 id="presentation-entreprise">2. Présentation de l'environnement d'accueil</h2>
+
+        <h3 id="technopark">2.1. Le Technopark : Un écosystème d'innovation</h3>
+        <p>Mon stage s'est déroulé au sein du <strong>Technopark</strong>, un environnement emblématique et dynamique
+            dédié aux entreprises opérant dans le secteur des Technologies de l'Information et de la Communication
+            (TIC), de l'innovation et des technologies vertes. Le Technopark n'est pas seulement un espace de bureaux,
+            c'est un véritable écosystème conçu pour favoriser la synergie, le réseautage et la croissance des startups
+            et des entreprises technologiques.</p>
+        <p>Créé pour soutenir l'émergence d'un écosystème numérique marocain compétitif, le Technopark offre à ses
+            entreprises résidentes un ensemble de services et d'avantages significatifs :</p>
+        <ul>
+            <li><strong>Infrastructure moderne :</strong> des espaces de travail équipés de connexions internet haut
+                débit, des salles de réunion modernes, et des espaces de co-working favorisant la collaboration
+                inter-entreprises.</li>
+            <li><strong>Accompagnement et mentorat :</strong> un programme d'incubation et d'accélération pour les
+                jeunes entreprises innovantes, offrant un accès à des mentors expérimentés et à des formations
+                spécialisées.</li>
+            <li><strong>Réseautage :</strong> la concentration d'entreprises du même secteur crée un réseau dense de
+                contacts professionnels, de partenariats potentiels et d'échanges de bonnes pratiques.</li>
+            <li><strong>Événements réguliers :</strong> organisation de hackathons, de conférences technologiques, de
+                meetups et d'ateliers de formation qui permettent aux professionnels de se tenir à jour sur les
+                dernières tendances du marché.</li>
+        </ul>
+        <p>Évoluer dans un tel cadre a été particulièrement inspirant. La concentration d'entreprises innovantes,
+            l'ambiance générale axée sur la création technologique et les échanges quotidiens avec des professionnels du
+            digital ont constitué un cadre idéal pour une immersion réussie dans le monde professionnel du numérique.
+            J'ai pu observer comment différentes startups abordent leurs problématiques techniques et comprendre les
+            dynamiques qui animent l'écosystème tech marocain.</p>
+
+        <h3 id="eaneerdev">2.2. Présentation de l'entreprise EaneerDev</h3>
+        <p><strong>EaneerDev</strong> est une entreprise de développement logiciel reconnue pour son expertise dans la
+            création de solutions digitales sur mesure. Établie au Technopark, elle accompagne ses clients dans leur
+            transformation digitale en leur proposant des applications web et mobiles robustes, ergonomiques et à la
+            pointe de la technologie.</p>
+        <p>Les principaux domaines d'intervention d'EaneerDev couvrent :</p>
+        <ul>
+            <li><strong>Le développement d'applications web :</strong> conception et réalisation d'applications web
+                complexes (SaaS, plateformes e-commerce, dashboards analytiques) en utilisant des frameworks modernes
+                comme React, Next.js et Node.js.</li>
+            <li><strong>Le développement d'applications mobiles :</strong> création d'applications mobiles
+                cross-platform offrant une expérience native.</li>
+            <li><strong>Le conseil en transformation digitale :</strong> accompagnement des entreprises dans la
+                définition de leur stratégie numérique et dans le choix des solutions technologiques les plus adaptées à
+                leurs besoins.</li>
+            <li><strong>Le design UI/UX :</strong> conception d'interfaces utilisateurs intuitives et esthétiques,
+                centrées sur l'expérience de l'utilisateur final.</li>
+        </ul>
+        <p>L'approche d'EaneerDev repose sur trois piliers fondamentaux : la <strong>qualité</strong>,
+            l'<strong>innovation</strong> et la <strong>satisfaction client</strong>. L'entreprise adopte des
+            méthodologies de travail modernes, notamment les méthodes agiles (Scrum), et s'appuie sur des stacks
+            technologiques performantes pour répondre aux exigences complexes de ses partenaires. Le code est soumis à
+            des revues régulières et les livrables sont testés rigoureusement avant chaque déploiement.</p>
+        <p>L'équipe, jeune et dynamique, cultive une culture d'entreprise basée sur la collaboration, l'entraide et le
+            partage de connaissances. Cette atmosphère de travail bienveillante et stimulante a grandement facilité mon
+            intégration et m'a permis de m'épanouir professionnellement durant toute la durée du stage.</p>
+
+        <h3 id="organigramme">2.3. Organisation et structure de l'équipe</h3>
+        <p>L'équipe au sein de laquelle j'ai évolué est organisée de manière agile et polyvalente. Chaque membre apporte
+            une expertise complémentaire qui contribue à la réussite des projets :</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rôle</th>
+                    <th>Responsabilités principales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Chef de projet / Responsable de stage</strong></td>
+                    <td>Coordination générale du projet, définition des priorités, revue de code, encadrement des
+                        stagiaires</td>
+                </tr>
+                <tr>
+                    <td><strong>Développeur Back-End</strong></td>
+                    <td>Conception des API REST, gestion de la base de données, logique métier côté serveur</td>
+                </tr>
+                <tr>
+                    <td><strong>Développeur Front-End (mon poste)</strong></td>
+                    <td>Intégration des maquettes, développement des composants UI, responsive design, optimisation des
+                        performances</td>
+                </tr>
+                <tr>
+                    <td><strong>Designer UI/UX</strong></td>
+                    <td>Création des maquettes Figma, définition du design system, prototypage des interactions</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Cette organisation m'a permis de comprendre concrètement comment les différents métiers du développement
+            logiciel interagissent et se complètent dans un contexte professionnel. J'ai pu observer le flux de travail
+            complet, depuis la conception du design jusqu'au déploiement de l'application, ce qui m'a offert une vision
+            globale du cycle de vie d'un projet informatique.</p>
+    </div>
+
+    <!-- OBJECTIFS ET CADRE DU STAGE -->
+    <div class="page">
+        <h2 id="objectifs">3. Objectifs et cadre du stage</h2>
+
+        <h3 id="contexte-projet">3.1. Contexte et problématique du projet</h3>
+        <p>Le projet sur lequel j'ai travaillé durant mon stage s'inscrit dans le cadre du développement d'une
+            <strong>application web moderne</strong> pour l'un des clients d'EaneerDev. Cette application nécessitait
+            une interface utilisateur riche, réactive et conforme aux standards actuels du web. Le client avait des
+            attentes élevées en matière de qualité visuelle et de fluidité d'interaction, ce qui impliquait une
+            intégration minutieuse et un souci du détail permanent.
+        </p>
+        <p>La problématique centrale à laquelle j'ai été confronté peut se résumer ainsi : <strong>comment transformer
+                efficacement des maquettes de design complexes en une interface web fonctionnelle, performante et
+                maintenable, tout en respectant les délais de livraison et les exigences de qualité de l'entreprise
+                ?</strong></p>
+        <p>Cette question soulève plusieurs sous-problématiques techniques :</p>
+        <ul>
+            <li>Comment assurer une fidélité maximale entre le design conçu sur Figma et le rendu final dans le
+                navigateur ?</li>
+            <li>Comment structurer le code Front-End de manière modulaire et réutilisable pour faciliter la maintenance
+                future ?</li>
+            <li>Comment garantir une expérience utilisateur optimale sur tous les types d'appareils (desktop, tablette,
+                mobile) ?</li>
+            <li>Comment optimiser les performances de chargement pour offrir une navigation rapide et fluide ?</li>
+        </ul>
+
+        <h3 id="objectifs-specifiques">3.2. Objectifs spécifiques</h3>
+        <p>L'objectif principal de ce stage était de me plonger au cœur d'un projet de développement web réel, en me
+            confiant la responsabilité du <strong>développement Front-End d'une application web</strong>. Il s'agissait
+            de dépasser le cadre des exercices académiques pour me confronter aux exigences de production d'une
+            entreprise professionnelle.</p>
+        <p>Les objectifs spécifiques qui m'ont été fixés comprenaient :</p>
+        <ul>
+            <li><strong>L'intégration « Pixel-Perfect » :</strong> Traduire fidèlement des maquettes de design complexes
+                (fournies via Figma) en code HTML/CSS/JS, en respectant chaque espacement, chaque couleur et chaque
+                élément visuel défini par le designer. L'écart toléré entre la maquette et le rendu devait être minimal,
+                voire nul.</li>
+            <li><strong>La maîtrise d'un framework moderne :</strong> Appliquer et approfondir mes connaissances sur
+                <strong>Next.js</strong> pour la création d'une architecture Front-End solide, en exploitant ses
+                fonctionnalités avancées comme le Server-Side Rendering (SSR), le Static Site Generation (SSG) et l'App
+                Router.
+            </li>
+            <li><strong>L'utilisation de Tailwind CSS :</strong> Développer des interfaces rapides et responsives en
+                utilisant cette bibliothèque CSS utilitaire, en maîtrisant sa syntaxe et sa configuration avancée.</li>
+            <li><strong>L'optimisation de l'expérience utilisateur :</strong> S'assurer que l'application est intuitive,
+                rapide et parfaitement adaptée aux différents écrans (ordinateurs, tablettes, smartphones), en suivant
+                les principes du Responsive Web Design.</li>
+            <li><strong>L'écriture de code propre et maintenable :</strong> Respecter les conventions de nommage,
+                structurer les fichiers de manière logique, et documenter le code pour faciliter la collaboration et la
+                maintenance future.</li>
+            <li><strong>L'intégration dans un workflow professionnel :</strong> Comprendre et respecter les processus de
+                développement de l'entreprise (utilisation de Git, revue de code, communication via des outils
+                collaboratifs), interagir avec l'équipe et communiquer efficacement sur l'avancement des tâches.</li>
+        </ul>
+
+        <h3 id="planning">3.3. Planning et déroulement du stage</h3>
+        <p>Le stage s'est déroulé de manière progressive, avec une montée en compétence graduelle. Voici le planning
+            général que j'ai suivi :</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Semaine</th>
+                    <th>Phase</th>
+                    <th>Activités principales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Semaine 1</td>
+                    <td>Intégration & Découverte</td>
+                    <td>Prise de connaissance de l'entreprise, installation de l'environnement de développement,
+                        découverte du projet et de la stack technologique, lecture de la documentation interne</td>
+                </tr>
+                <tr>
+                    <td>Semaine 2</td>
+                    <td>Formation & Montée en compétence</td>
+                    <td>Apprentissage approfondi de Next.js (App Router, Server Components), familiarisation avec
+                        Tailwind CSS, étude des maquettes Figma</td>
+                </tr>
+                <tr>
+                    <td>Semaines 3-4</td>
+                    <td>Développement des composants</td>
+                    <td>Création des composants réutilisables (Navbar, Footer, boutons, cartes, formulaires), mise en
+                        place du design system</td>
+                </tr>
+                <tr>
+                    <td>Semaines 5-6</td>
+                    <td>Intégration des pages</td>
+                    <td>Assemblage des composants en pages complètes, intégration des données statiques, mise en page
+                        pixel-perfect</td>
+                </tr>
+                <tr>
+                    <td>Semaines 7-8</td>
+                    <td>Responsive & Optimisation</td>
+                    <td>Adaptation responsive de toutes les pages, optimisation des performances, correction des bugs
+                        d'affichage, tests cross-browser</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Ce planning, bien que structuré, est resté flexible pour s'adapter aux priorités évolutives du projet et aux
+            retours du responsable de stage. Certaines tâches se sont chevauchées, notamment le développement de
+            composants et l'intégration des pages, qui ont été menés en parallèle lorsque cela était pertinent.</p>
+    </div>
+
+    <!-- TECHNOLOGIES ET OUTILS -->
+    <div class="page">
+        <h2 id="technologies">4. Technologies et outils utilisés</h2>
+        <p>Pour mener à bien ce projet, j'ai dû me familiariser et maîtriser un ensemble d'outils et de technologies qui
+            constituent aujourd'hui le standard du développement Front-End moderne. Cette section présente en détail
+            chaque technologie utilisée, son rôle dans le projet et les compétences que j'ai acquises à travers son
+            utilisation.</p>
+
+        <h3 id="figma">4.1. Figma : La base du workflow de conception</h3>
+        <p>Figma a été l'outil central de communication entre la vision design et le développement technique. M. Hamza
+            m'a fourni les maquettes complètes de l'application via cette plateforme collaborative de design.</p>
+        <p>L'importance de Figma dans le workflow de développement est capitale. Dans le cadre de mon stage, j'ai
+            utilisé Figma pour :</p>
+        <ul>
+            <li><strong>L'inspection des éléments :</strong> Récupérer les valeurs exactes des marges (padding, margin),
+                des polices (font-family, font-size, font-weight, line-height), des couleurs (codes hexadécimaux et
+                valeurs RGB), des ombres (box-shadow) et des border-radius. Chaque propriété CSS devait correspondre
+                exactement aux spécifications du design.</li>
+            <li><strong>L'export des assets graphiques :</strong> Extraire les icônes en format SVG pour un rendu net à
+                toutes les résolutions, et les images en formats optimisés (WebP, PNG) avec les dimensions appropriées.
+            </li>
+            <li><strong>La compréhension des interactions :</strong> Analyser les prototypes interactifs pour comprendre
+                les animations prévues, les transitions entre les pages, les états des boutons (hover, active, disabled)
+                et les comportements attendus des éléments interactifs.</li>
+            <li><strong>La mesure des espacements :</strong> Utiliser l'outil de mesure de Figma pour déterminer
+                précisément les distances entre les éléments, ce qui a été crucial pour reproduire fidèlement la mise en
+                page.</li>
+        </ul>
+        <p>Savoir « lire » correctement un fichier Figma est devenu une compétence indispensable pour assurer une
+            intégration fidèle. J'ai appris à naviguer dans les calques (layers), à utiliser les composants et variantes
+            de Figma, et à exploiter le mode « Inspect » pour extraire rapidement les propriétés CSS des éléments.</p>
+
+        <h3 id="nextjs">4.2. Next.js : Le framework React pour la performance</h3>
+        <p>Le projet a été bâti sur <strong>Next.js</strong>, un framework React puissant développé par Vercel qui offre
+            des fonctionnalités avancées prêtes à l'emploi. L'apprentissage et l'utilisation de Next.js ont été très
+            enrichissants et ont considérablement élargi ma compréhension de l'écosystème React.</p>
+        <p>Voici les principales fonctionnalités de Next.js que j'ai exploitées durant mon stage :</p>
+        <ul>
+            <li><strong>L'App Router (basé sur les fichiers) :</strong> Next.js utilise un système de routage basé sur
+                le système de fichiers. Chaque fichier <code>page.js</code> placé dans un dossier de l'arborescence
+                <code>/app</code> crée automatiquement une route accessible. Par exemple, un fichier
+                <code>app/dashboard/page.js</code> crée la route <code>/dashboard</code>. Cette approche rend la
+                création de pages très intuitive et élimine la nécessité de configurer un routeur manuellement.
+            </li>
+            <li><strong>Le rendu côté serveur (SSR) et la génération statique (SSG) :</strong> Next.js permet de
+                pré-rendre les pages côté serveur, ce qui améliore significativement les temps de chargement initial et
+                le référencement naturel (SEO). J'ai appris à choisir la stratégie de rendu la plus adaptée selon le
+                type de page.</li>
+            <li><strong>Les Server Components et Client Components :</strong> Next.js introduit la distinction entre les
+                composants serveur (par défaut) et les composants client (avec la directive <code>'use client'</code>).
+                J'ai appris à identifier quand utiliser chaque type, en réservant les Client Components pour les
+                éléments nécessitant de l'interactivité (gestion d'état, événements utilisateur).</li>
+            <li><strong>L'optimisation automatique des images :</strong> Le composant <code>next/image</code> gère
+                automatiquement le chargement paresseux (lazy loading), le redimensionnement et la conversion en formats
+                modernes (WebP), ce qui contribue grandement à la performance de l'application.</li>
+            <li><strong>Les Layouts partagés :</strong> Grâce au fichier <code>layout.js</code>, j'ai pu définir des
+                mises en page communes (navbar, footer, sidebar) qui persistent entre les navigations de pages, évitant
+                les rendus inutiles et offrant une expérience de navigation fluide.</li>
+        </ul>
+        <p>L'utilisation de Next.js m'a permis de comprendre les avantages concrets d'un framework par rapport à une
+            simple application React créée avec Create React App ou Vite, notamment en termes de performance, de SEO et
+            de structure de projet.</p>
+
+        <h3 id="tailwindcss">4.3. Tailwind CSS : Le design agile</h3>
+        <p>Pour le styling de l'application, l'entreprise a opté pour <strong>Tailwind CSS</strong>, un framework CSS «
+            Utility-First » qui a profondément changé ma façon d'aborder le styling des interfaces web.</p>
+        <p>Le principe fondamental de Tailwind est de fournir des classes CSS utilitaires de bas niveau (comme
+            <code>flex</code>, <code>pt-4</code>, <code>text-center</code>, <code>bg-blue-500</code>) que l'on compose
+            directement dans le code HTML/JSX pour construire n'importe quel design. Contrairement aux frameworks CSS
+            traditionnels comme Bootstrap qui fournissent des composants pré-stylisés, Tailwind offre une liberté totale
+            de design tout en maintenant une cohérence visuelle.
+        </p>
+        <p>Les aspects de Tailwind CSS que j'ai particulièrement maîtrisés incluent :</p>
+        <ul>
+            <li><strong>Le système de classes utilitaires :</strong> Utilisation fluide des classes pour le layout
+                (Flexbox, Grid), l'espacement, la typographie, les couleurs, les bordures, les ombres et les
+                transformations.</li>
+            <li><strong>Le responsive design avec les breakpoints :</strong> Utilisation des préfixes <code>sm:</code>,
+                <code>md:</code>, <code>lg:</code>, <code>xl:</code> et <code>2xl:</code> pour créer des mises en page
+                adaptatives. Par exemple, <code>grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3</code> crée une grille
+                qui passe d'une à trois colonnes selon la taille de l'écran.
+            </li>
+            <li><strong>La personnalisation via <code>tailwind.config.js</code> :</strong> Extension de la configuration
+                par défaut pour ajouter les couleurs spécifiques du design, des polices personnalisées, des espacements
+                sur mesure et des breakpoints adaptés aux besoins du projet.</li>
+            <li><strong>Les pseudo-classes et états :</strong> Utilisation des préfixes <code>hover:</code>,
+                <code>focus:</code>, <code>active:</code>, <code>disabled:</code> pour styliser les différents états des
+                éléments interactifs sans écrire de CSS supplémentaire.
+            </li>
+            <li><strong>L'arbitrary value syntax :</strong> Pour les cas particuliers nécessitant des valeurs non
+                prévues dans la configuration, j'ai utilisé la syntaxe entre crochets (ex : <code>w-[23px]</code>,
+                <code>bg-[#1a2b3c]</code>) pour appliquer des valeurs CSS personnalisées.
+            </li>
+        </ul>
+        <p>Bien que Tailwind CSS ait nécessité un temps d'adaptation pour mémoriser les classes et adopter le paradigme
+            « utility-first », il s'est révélé être un atout majeur pour développer rapidement des interfaces cohérentes
+            et responsives. Le code JSX, bien que plus verbeux en termes de classes, élimine la nécessité de naviguer
+            entre des fichiers CSS séparés, ce qui accélère considérablement le développement.</p>
+    </div>
+
+    <!-- OUTILS COMPLEMENTAIRES -->
+    <div class="page">
+        <h3 id="outils-complementaires">4.4. Outils complémentaires</h3>
+        <p>En plus des technologies principales, j'ai utilisé un ensemble d'outils complémentaires essentiels au
+            workflow de développement professionnel :</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Outil</th>
+                    <th>Rôle</th>
+                    <th>Utilisation dans le projet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Visual Studio Code</strong></td>
+                    <td>Éditeur de code</td>
+                    <td>Environnement de développement principal, avec des extensions comme Tailwind CSS IntelliSense,
+                        ES7 React Snippets et Prettier pour le formatage automatique du code</td>
+                </tr>
+                <tr>
+                    <td><strong>Git & GitHub</strong></td>
+                    <td>Gestion de versions</td>
+                    <td>Suivi des modifications du code, travail sur des branches séparées (feature branches), pull
+                        requests pour la revue de code, et résolution de conflits de merge</td>
+                </tr>
+                <tr>
+                    <td><strong>Node.js & npm</strong></td>
+                    <td>Environnement d'exécution & gestionnaire de paquets</td>
+                    <td>Exécution du serveur de développement Next.js, installation et gestion des dépendances du projet
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Chrome DevTools</strong></td>
+                    <td>Outils de débogage</td>
+                    <td>Inspection des éléments DOM, débogage CSS, simulation d'écrans mobiles, analyse des performances
+                        de chargement, vérification du réseau</td>
+                </tr>
+                <tr>
+                    <td><strong>Navigateurs web</strong></td>
+                    <td>Tests cross-browser</td>
+                    <td>Tests de compatibilité sur Google Chrome, Mozilla Firefox, Microsoft Edge et Safari pour
+                        s'assurer du rendu uniforme de l'application</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>La maîtrise de ces outils est indispensable dans le quotidien d'un développeur Front-End. Chacun d'entre eux
+            contribue à la productivité, à la qualité du code et à la fiabilité du produit final. J'ai notamment
+            beaucoup progressé dans l'utilisation de <strong>Git</strong>, passant de commandes basiques (add, commit,
+            push) à une utilisation plus avancée incluant le travail avec des branches, la résolution de conflits et les
+            pull requests.</p>
+    </div>
+
+    <!-- MISSIONS REALISEES -->
+    <div class="page">
+        <h2 id="missions">5. Description détaillée des tâches réalisées</h2>
+        <p>Ma mission au sein d'EaneerDev s'est déroulée de manière méthodique et progressive, suivant les étapes
+            classiques de la création d'une interface web professionnelle. Chaque phase a contribué à la construction
+            d'un produit final cohérent et de qualité.</p>
+
+        <h3 id="analyse">5.1. Analyse des maquettes Figma</h3>
+        <p>La première phase de mon travail a consisté en une analyse approfondie et systématique des maquettes fournies
+            par mon encadrant. Avant d'écrire la moindre ligne de code, j'ai consacré un temps significatif à étudier
+            l'ensemble du design sur Figma. Cette étape préparatoire, souvent sous-estimée, s'est révélée être l'une des
+            plus importantes du processus d'intégration.</p>
+        <p>Mon analyse s'est structurée en plusieurs phases :</p>
+        <ul>
+            <li><strong>Vue d'ensemble du projet :</strong> J'ai d'abord parcouru l'intégralité des maquettes pour
+                comprendre la vision globale de l'application, le parcours utilisateur et l'organisation des différentes
+                pages et sections.</li>
+            <li><strong>Identification du design system :</strong> J'ai relevé les éléments récurrents du design — la
+                palette de couleurs principale et secondaire, la typographie (polices, tailles, graisses), les
+                espacements standards, les styles de boutons, les styles de cartes, les ombres et les border-radius —
+                pour les intégrer dans la configuration de Tailwind CSS.</li>
+            <li><strong>Décomposition en composants :</strong> J'ai visuellement découpé chaque page en blocs logiques
+                réutilisables (header, sidebar, sections de contenu, formulaires, modales), en identifiant les patterns
+                communs entre les différentes pages. Cette réflexion en amont a été essentielle pour définir
+                l'architecture des composants React.</li>
+            <li><strong>Analyse des interactions :</strong> J'ai étudié les prototypes interactifs de Figma pour
+                comprendre les animations attendues, les transitions entre les pages, et les comportements des éléments
+                au survol ou au clic.</li>
+            <li><strong>Documentation des spécifications :</strong> J'ai pris des notes détaillées sur les
+                spécifications de chaque composant, créant une sorte de « guide de développement » personnel qui m'a
+                servi de référence tout au long de l'intégration.</li>
+        </ul>
+        <p>Cette phase d'analyse m'a permis d'anticiper la structure des composants React à créer et de définir la
+            configuration de base de Tailwind CSS dans le fichier <code>tailwind.config.js</code>. Elle a
+            considérablement réduit les allers-retours entre le code et les maquettes durant la phase de développement.
+        </p>
+
+        <h3 id="composants">5.2. Développement et organisation des composants</h3>
+        <p>Fort de mon analyse, j'ai entamé le développement avec une approche <strong>modulaire et atomique</strong>.
+            Plutôt que de coder des pages monolithiques (une approche courante chez les développeurs débutants), j'ai
+            adopté les bonnes pratiques de l'industrie en structurant l'application en composants réutilisables, suivant
+            les principes du « Component-Based Architecture ».</p>
+        <p>L'organisation du dossier <code>/components</code> a été structurée de manière hiérarchique :</p>
+
+        <h4>Composants de base (Atoms)</h4>
+        <p>J'ai d'abord créé les briques élémentaires de l'interface :</p>
+        <ul>
+            <li><strong>Button :</strong> Un composant bouton générique acceptant différentes variantes (primary,
+                secondary, outline, ghost), tailles (sm, md, lg) et états (normal, hover, disabled, loading). Ce
+                composant unique a été utilisé dans toute l'application, garantissant une cohérence visuelle parfaite.
+            </li>
+            <li><strong>Input / TextField :</strong> Un composant de champ de saisie avec gestion des labels, des
+                placeholders, des messages d'erreur et des icônes. La gestion des états (focus, error, disabled) a été
+                implémentée avec les classes Tailwind.</li>
+            <li><strong>Badge / Tag :</strong> Des étiquettes colorées pour afficher des statuts ou des catégories.</li>
+            <li><strong>Avatar :</strong> Un composant pour afficher les photos de profil avec gestion des fallbacks
+                (initiales) en cas d'image manquante.</li>
+        </ul>
+
+        <h4>Composants composés (Molecules)</h4>
+        <p>En assemblant les composants de base, j'ai créé des composants plus complexes :</p>
+        <ul>
+            <li><strong>Card :</strong> Un composant carte polyvalent utilisé pour afficher des informations résumées
+                (profils, articles, statistiques), avec une structure flexible (image, titre, description, actions).
+            </li>
+            <li><strong>Navbar :</strong> Une barre de navigation responsive avec un logo, des liens de navigation, et
+                un menu hamburger pour les écrans mobiles. Ce composant gère son propre état d'ouverture/fermeture sur
+                mobile.</li>
+            <li><strong>Footer :</strong> Un pied de page complet avec liens utiles, informations de contact et mentions
+                légales, organisé en colonnes adaptatives.</li>
+            <li><strong>SearchBar :</strong> Un composant de recherche avec un champ de saisie et un bouton, incluant
+                des suggestions de recherche.</li>
+            <li><strong>FormGroup :</strong> Un composant regroupant un label, un champ de saisie et un message d'erreur
+                pour standardiser les formulaires.</li>
+        </ul>
+        <p>Cette organisation rigoureuse a permis de garder un code propre, lisible et facilement maintenable, tout en
+            évitant la redondance. Modifier le style d'un bouton, par exemple, se faisait en un seul endroit et se
+            répercutait automatiquement sur toute l'application.</p>
+    </div>
+
+    <!-- MISSIONS REALISEES (suite) -->
+    <div class="page">
+        <h3 id="integration">5.3. Intégration des interfaces utilisateur</h3>
+        <p>Une fois les composants de base prêts, je suis passé à l'assemblage des différentes vues pour former les
+            pages complètes de l'application web. Cette phase constitue le cœur de mon travail d'intégrateur Front-End
+            et a mobilisé la plus grande partie de mon temps de stage.</p>
+        <p>L'objectif était d'obtenir un résultat « <strong>Pixel-Perfect</strong> », c'est-à-dire visuellement
+            identique à la maquette Figma, au pixel près. Pour y parvenir, j'ai adopté une méthodologie rigoureuse :</p>
+        <ol>
+            <li><strong>Structuration sémantique :</strong> Pour chaque page, j'ai d'abord défini la structure HTML
+                sémantique en utilisant les balises appropriées (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>,
+                <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>,
+                <code>&lt;footer&gt;</code>). Cette approche garantit l'accessibilité de l'application et améliore le
+                référencement naturel.
+            </li>
+            <li><strong>Mise en page avec Flexbox et Grid :</strong> J'ai utilisé les classes Tailwind pour Flexbox
+                (<code>flex</code>, <code>justify-center</code>, <code>items-center</code>, <code>gap-4</code>) et CSS
+                Grid (<code>grid</code>, <code>grid-cols-3</code>) pour construire des layouts complexes. La combinaison
+                de ces deux systèmes de mise en page m'a permis de reproduire n'importe quelle disposition prévue dans
+                les maquettes.</li>
+            <li><strong>Application précise des styles :</strong> En utilisant Tailwind CSS, j'ai appliqué avec
+                précision les marges, les espacements, les couleurs, les ombres et les border-radius exactement comme
+                spécifié dans Figma. J'ai régulièrement superposé le design Figma et le rendu navigateur pour vérifier
+                la fidélité pixel par pixel.</li>
+            <li><strong>Intégration des interactions :</strong> J'ai ajouté les animations de survol (hover effects),
+                les transitions CSS fluides (<code>transition-all duration-300</code>), et les changements d'état
+                visuels pour rendre l'interface vivante et engageante.</li>
+        </ol>
+        <p>Les principales pages que j'ai intégrées comprennent :</p>
+        <ul>
+            <li><strong>La page d'accueil (Landing Page) :</strong> Comportant une section héro avec un appel à
+                l'action, une section de présentation des fonctionnalités, des témoignages clients et une section de
+                contact. Cette page a nécessité un travail particulier sur les animations au scroll et les transitions
+                visuelles.</li>
+            <li><strong>Les pages d'authentification :</strong> Formulaires de connexion et d'inscription avec
+                validation visuelle des champs, gestion des messages d'erreur et design adapté aux différentes tailles
+                d'écran.</li>
+            <li><strong>Le tableau de bord (Dashboard) :</strong> Une interface riche en données comprenant des
+                graphiques statistiques, des tableaux de données, des cartes récapitulatives et une sidebar de
+                navigation. C'est la page qui m'a posé le plus de défis en termes de responsive design.</li>
+            <li><strong>Les pages de profil et de paramètres :</strong> Formulaires d'édition de profil, gestion des
+                préférences utilisateur et affichage des informations personnelles.</li>
+        </ul>
+
+        <h3 id="responsive">5.4. Création de pages responsive</h3>
+        <p>Aujourd'hui, une application web doit fonctionner parfaitement sur tous les appareils. Avec la diversité des
+            tailles d'écran disponibles sur le marché (smartphones de 320px à 428px, tablettes de 768px à 1024px,
+            ordinateurs de 1280px et au-delà), la mise en place d'un design responsive est devenue une exigence
+            incontournable.</p>
+        <p>J'ai consacré une part significative de mon temps à rendre l'interface <strong>responsive</strong>, en
+            adoptant une approche « <strong>Mobile-First</strong> » recommandée par mon responsable de stage. Cette
+            approche consiste à concevoir d'abord pour les petits écrans, puis à enrichir progressivement la mise en
+            page pour les écrans plus grands.</p>
+        <p>Les techniques et adaptations que j'ai mises en œuvre incluent :</p>
+        <ul>
+            <li><strong>Transformation des grilles :</strong> Les grilles multi-colonnes (3 ou 4 colonnes sur desktop)
+                ont été adaptées pour afficher 2 colonnes sur tablette et une seule colonne sur mobile, en utilisant les
+                classes responsives de Tailwind (<code>grid-cols-1 md:grid-cols-2 lg:grid-cols-3</code>).</li>
+            <li><strong>Ajustement de la typographie :</strong> Les tailles de police ont été réduites
+                proportionnellement sur les petits écrans pour maintenir une lisibilité optimale. Par exemple, un titre
+                de 36px sur desktop passait à 24px sur mobile.</li>
+            <li><strong>Menu de navigation mobile :</strong> J'ai remplacé la navigation horizontale classique par un
+                menu « hamburger » animé sur mobile, avec un menu latéral (slide-in) offrant une expérience tactile
+                intuitive. La gestion de l'ouverture et de la fermeture a été implémentée avec le hook
+                <code>useState</code> de React.
+            </li>
+            <li><strong>Adaptation des images :</strong> Utilisation de tailles d'images adaptées à chaque breakpoint
+                via le composant <code>next/image</code> et la propriété <code>sizes</code>, pour éviter de charger des
+                images haute résolution sur mobile.</li>
+            <li><strong>Masquage conditionnel :</strong> Certains éléments secondaires (comme des colonnes de détails
+                supplémentaires ou des images décoratives) sont masqués sur les petits écrans
+                (<code>hidden md:block</code>) pour prioriser le contenu essentiel et éviter la surcharge visuelle.</li>
+            <li><strong>Espacement adaptatif :</strong> Les marges et paddings ont été ajustés pour chaque breakpoint
+                afin de maintenir une respiration visuelle adaptée à la taille de l'écran
+                (<code>p-4 md:p-8 lg:p-12</code>).</li>
+        </ul>
+        <p>J'ai systématiquement testé le responsive design en utilisant les outils de simulation de Chrome DevTools, en
+            vérifiant le rendu sur les résolutions les plus courantes : iPhone SE (375px), iPhone 12/13/14 (390px), iPad
+            (768px), iPad Pro (1024px) et les écrans desktop standards (1280px, 1440px, 1920px).</p>
+    </div>
+
+    <!-- MISSIONS REALISEES (suite 2) -->
+    <div class="page">
+        <h3 id="correction">5.5. Correction de bugs et amélioration de l'interface</h3>
+        <p>La phase de développement a été suivie de cycles de tests et de corrections rigoureux. Cette étape, bien que
+            moins « créative » que le développement initial, est tout aussi cruciale pour livrer un produit de qualité
+            professionnelle.</p>
+        <p>Les types de bugs que j'ai identifiés et corrigés incluent :</p>
+        <ul>
+            <li><strong>Problèmes d'alignement :</strong> Des décalages de quelques pixels entre les éléments, causés
+                par des marges ou des paddings incohérents, identifiés en comparant minutieusement le rendu avec les
+                maquettes Figma.</li>
+            <li><strong>Chevauchement d'éléments :</strong> Sur de très petits écrans (en dessous de 320px), certains
+                éléments se chevauchaient en raison de valeurs de taille fixes (<code>width</code> en pixels) au lieu de
+                valeurs relatives (<code>%</code> ou <code>vw</code>). La solution a consisté à utiliser des unités
+                relatives et des propriétés comme <code>min-width</code> et <code>max-width</code>.</li>
+            <li><strong>Débordement de texte :</strong> Des textes longs qui dépassaient de leur conteneur sur mobile.
+                J'ai utilisé les classes Tailwind <code>truncate</code>, <code>overflow-hidden</code> et
+                <code>text-ellipsis</code> pour gérer élégamment ces cas.
+            </li>
+            <li><strong>Incompatibilités cross-browser :</strong> Certains styles (notamment les propriétés CSS modernes
+                comme <code>backdrop-filter</code>) ne s'affichaient pas correctement sur tous les navigateurs. J'ai
+                ajouté des préfixes vendor et des fallbacks CSS pour assurer la compatibilité.</li>
+            <li><strong>Problèmes de z-index :</strong> La gestion de l'empilement des éléments (modales, menus
+                déroulants, tooltips) a nécessité une organisation rigoureuse des valeurs de <code>z-index</code> pour
+                éviter les conflits visuels.</li>
+        </ul>
+        <p>Suite aux retours de M. Hamza et à mes propres observations, j'ai également apporté des améliorations
+            significatives à l'interface :</p>
+        <ul>
+            <li>Ajout d'animations subtiles de <strong>hover</strong> sur les boutons et les cartes (scale, shadow,
+                color transitions) pour un feedback visuel engageant.</li>
+            <li>Implémentation de <strong>transitions fluides</strong> entre les états des composants
+                (<code>transition-all duration-300 ease-in-out</code>) pour une expérience utilisateur plus douce et
+                naturelle.</li>
+            <li>Amélioration des <strong>états de focus</strong> des champs de formulaire avec des anneaux de focus
+                colorés (<code>focus:ring-2 focus:ring-blue-500</code>) pour une meilleure accessibilité.</li>
+            <li>Ajout d'effets de <strong>loading skeletons</strong> (squelettes de chargement) pour les zones de
+                contenu dynamique, offrant une meilleure perception des temps de chargement.</li>
+        </ul>
+
+        <h3 id="optimisation">5.6. Optimisation des performances</h3>
+        <p>Au-delà de l'aspect purement visuel, j'ai également travaillé sur l'optimisation des performances de
+            l'application, un aspect fondamental de l'expérience utilisateur moderne. Un site lent est un site que les
+            utilisateurs quittent : selon les études, 53% des visiteurs mobiles quittent un site qui met plus de 3
+            secondes à charger.</p>
+        <p>Les optimisations que j'ai mises en place comprennent :</p>
+        <ul>
+            <li><strong>Optimisation des images :</strong> Utilisation systématique du composant <code>next/image</code>
+                qui gère le lazy loading (chargement paresseux), le dimensionnement automatique et la conversion en
+                format WebP. Les images ont été compressées et redimensionnées pour réduire leur poids sans perte de
+                qualité visible.</li>
+            <li><strong>Purge du CSS inutilisé :</strong> Tailwind CSS, via sa fonctionnalité de purge intégrée,
+                supprime automatiquement toutes les classes CSS non utilisées lors du build de production, réduisant
+                considérablement la taille du fichier CSS final (de plusieurs Mo à quelques Ko).</li>
+            <li><strong>Chargement conditionnel des composants :</strong> Utilisation du <code>dynamic import</code> de
+                Next.js pour les composants lourds (graphiques, modales) qui ne sont chargés que lorsqu'ils sont
+                nécessaires, réduisant ainsi le poids du bundle JavaScript initial.</li>
+            <li><strong>Optimisation du rendu :</strong> Utilisation judicieuse des hooks React (<code>useMemo</code>,
+                <code>useCallback</code>) pour éviter les re-rendus inutiles des composants, et du composant
+                <code>React.memo</code> pour mémoriser les composants coûteux.
+            </li>
+        </ul>
+    </div>
+
+    <!-- METHODOLOGIE DE TRAVAIL -->
+    <div class="page">
+        <h2 id="methodologie">6. Méthodologie de travail</h2>
+
+        <h3 id="journee-type">6.1. Organisation d'une journée type</h3>
+        <p>L'organisation quotidienne du travail au sein d'EaneerDev suit une structure bien définie qui favorise la
+            productivité et la communication au sein de l'équipe. Voici le déroulement typique d'une journée de travail
+            durant mon stage :</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Horaire</th>
+                    <th>Activité</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>09h00 - 09h15</td>
+                    <td>Daily Stand-up</td>
+                    <td>Réunion courte avec l'équipe pour partager l'avancement de la veille, les objectifs du jour et
+                        les éventuels blocages</td>
+                </tr>
+                <tr>
+                    <td>09h15 - 12h30</td>
+                    <td>Développement (session du matin)</td>
+                    <td>Phase de développement concentré : intégration de composants, codage de nouvelles
+                        fonctionnalités, résolution de bugs</td>
+                </tr>
+                <tr>
+                    <td>12h30 - 14h00</td>
+                    <td>Pause déjeuner</td>
+                    <td>Moment de détente et d'échanges informels avec les collègues</td>
+                </tr>
+                <tr>
+                    <td>14h00 - 17h00</td>
+                    <td>Développement (session de l'après-midi)</td>
+                    <td>Suite du développement, tests responsive, revue de code avec le responsable, corrections et
+                        améliorations</td>
+                </tr>
+                <tr>
+                    <td>17h00 - 17h30</td>
+                    <td>Récapitulatif & Push</td>
+                    <td>Sauvegarde du travail (git commit & push), mise à jour des tickets de tâches, préparation du
+                        lendemain</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Cette routine a été essentielle pour maintenir un rythme de travail productif et régulier. Le daily stand-up,
+            en particulier, m'a appris l'importance de la communication proactive dans un environnement professionnel.
+            Présenter mon travail chaque matin devant l'équipe m'a aidé à structurer ma pensée et à identifier
+            rapidement les points de blocage.</p>
+
+        <h3 id="workflow-dev">6.2. Workflow de développement</h3>
+        <p>Le processus de développement au sein d'EaneerDev suit un workflow structuré basé sur Git, garantissant la
+            qualité et la traçabilité du code :</p>
+        <ol>
+            <li><strong>Création d'une branche (feature branch) :</strong> Pour chaque nouvelle fonctionnalité ou
+                correction de bug, je créais une branche dédiée à partir de la branche principale
+                (<code>git checkout -b feature/nom-de-la-fonctionnalité</code>). Cette pratique isole les modifications
+                en cours et évite de polluer la branche principale avec du code incomplet.</li>
+            <li><strong>Développement et commits réguliers :</strong> Je développais la fonctionnalité en effectuant des
+                commits réguliers et descriptifs (ex :
+                <code>git commit -m "feat: ajouter le composant Navbar responsive"</code>). Chaque commit représente une
+                unité logique de travail, facilitant l'historique et le suivi des modifications.
+            </li>
+            <li><strong>Tests locaux :</strong> Avant de soumettre mon code, je testais exhaustivement le rendu sur
+                différents navigateurs et résolutions, en vérifiant la conformité avec les maquettes Figma et en
+                m'assurant de l'absence de régressions.</li>
+            <li><strong>Soumission d'une Pull Request (PR) :</strong> Une fois la fonctionnalité terminée et testée, je
+                soumettais une pull request sur GitHub avec une description détaillée des changements effectués, des
+                captures d'écran du rendu et des points d'attention éventuels.</li>
+            <li><strong>Revue de code (Code Review) :</strong> Mon responsable examinait mon code, laissait des
+                commentaires, suggérait des améliorations et validait les changements. Cette étape m'a été extrêmement
+                formatrice, car les retours de M. Hamza m'ont permis d'adopter de meilleures pratiques de codage et de
+                comprendre les standards de qualité de l'entreprise.</li>
+            <li><strong>Merge et déploiement :</strong> Après approbation, le code était fusionné dans la branche
+                principale et déployé dans l'environnement de staging pour des tests supplémentaires.</li>
+        </ol>
+        <p>Ce workflow, bien que plus exigeant qu'un simple « push » direct, garantit la stabilité du code et m'a
+            préparé aux pratiques professionnelles utilisées dans l'industrie du développement logiciel.</p>
+    </div>
+
+    <!-- DIFFICULTES ET SOLUTIONS -->
+    <div class="page">
+        <h2 id="difficultes">7. Difficultés rencontrées et solutions apportées</h2>
+        <p>Au cours de ce stage, j'ai été confronté à plusieurs défis techniques et organisationnels qui m'ont poussé à
+            approfondir mes recherches, à développer ma capacité de résolution de problèmes et à solliciter l'aide de
+            mon équipe lorsque nécessaire. Ces difficultés, loin d'être des obstacles insurmontables, se sont révélées
+            être de véritables opportunités d'apprentissage.</p>
+
+        <h4>Difficulté 1 : Prise en main de Next.js et de son écosystème</h4>
+        <p><strong>Problème :</strong> Ayant principalement travaillé avec React pur (Create React App ou Vite) durant
+            ma formation, l'architecture de Next.js m'a semblé complexe au début. Le système de routage basé sur les
+            dossiers (App Router), la distinction entre Server Components et Client Components, et les concepts de
+            SSR/SSG étaient des notions nouvelles pour moi. Je me retrouvais régulièrement avec des erreurs liées à
+            l'utilisation de hooks React (comme <code>useState</code> ou <code>useEffect</code>) dans des Server
+            Components, ce qui n'est pas autorisé.</p>
+        <p><strong>Solution :</strong> J'ai consacré les premières journées à lire attentivement la documentation
+            officielle de Next.js, qui est très bien structurée et comporte de nombreux exemples pratiques. J'ai
+            également suivi des tutoriels vidéo sur YouTube pour visualiser concrètement les concepts. Progressivement,
+            j'ai développé une compréhension solide de l'architecture et j'ai appris à utiliser la directive
+            <code>'use client'</code> de manière appropriée. Mon responsable a également pris le temps de m'expliquer
+            les choix architecturaux du projet, ce qui a accéléré ma compréhension.
+        </p>
+
+        <h4>Difficulté 2 : Fidélité au design avec Tailwind CSS</h4>
+        <p><strong>Problème :</strong> Parfois, il était difficile de reproduire un effet très spécifique du design
+            Figma en utilisant uniquement les classes par défaut de Tailwind. Par exemple, certaines valeurs
+            d'espacement (comme un padding de 18px) n'existaient pas dans l'échelle de valeurs prédéfinies de Tailwind.
+            De même, certaines couleurs du design n'avaient pas d'équivalent dans la palette par défaut.</p>
+        <p><strong>Solution :</strong> J'ai appris à étendre la configuration de Tailwind dans le fichier
+            <code>tailwind.config.js</code> pour ajouter des couleurs personnalisées, des valeurs spécifiques
+            d'espacement et des polices custom correspondant au design system du projet. Pour les cas très particuliers,
+            j'ai maîtrisé l'utilisation de l'arbitrary value syntax (ex : <code>p-[18px]</code>,
+            <code>bg-[#1a2b3c]</code>), une fonctionnalité puissante de Tailwind qui permet d'utiliser n'importe quelle
+            valeur CSS inline. Cette approche m'a donné la flexibilité nécessaire pour une intégration pixel-perfect.
+        </p>
+
+        <h4>Difficulté 3 : Gestion des conflits d'interface (Responsive)</h4>
+        <p><strong>Problème :</strong> Adapter des composants complexes (comme un tableau de bord riche en données avec
+            plusieurs colonnes de statistiques, des graphiques et des tableaux) sur des écrans mobiles sans perdre en
+            lisibilité a été un défi majeur. La simple réduction de taille ne suffisait pas : il fallait repenser
+            l'organisation visuelle du contenu pour chaque breakpoint.</p>
+        <p><strong>Solution :</strong> J'ai adopté une approche « Mobile-First » sur les conseils de M. Hamza. En
+            concevant d'abord pour les petits écrans puis en ajustant progressivement pour les grands, la structure du
+            code est devenue plus logique et les problèmes d'affichage ont été considérablement réduits. J'ai également
+            appris à utiliser des techniques comme le masquage conditionnel d'éléments secondaires sur mobile, la
+            transformation de tableaux de données en cartes empilables, et la réorganisation des grilles avec les
+            breakpoints Tailwind.</p>
+
+        <h4>Difficulté 4 : Gestion du temps et des priorités</h4>
+        <p><strong>Problème :</strong> Au début du stage, j'avais tendance à vouloir perfectionner chaque détail avant
+            de passer à la tâche suivante, ce qui ralentissait ma progression globale. Je consacrais parfois trop de
+            temps à un problème mineur au détriment de l'avancement général du projet.</p>
+        <p><strong>Solution :</strong> Mon responsable m'a appris à prioriser mes tâches en distinguant les éléments
+            essentiels des détails secondaires. J'ai adopté la méthode « itérative » : d'abord faire fonctionner
+            l'ensemble, puis revenir affiner les détails. J'ai également appris à définir un temps maximum pour chaque
+            tâche et à demander de l'aide si je restais bloqué trop longtemps, plutôt que de m'obstiner seul.</p>
+    </div>
+
+    <!-- COMPETENCES ACQUISES -->
+    <div class="page">
+        <h2 id="competences">8. Compétences acquises et bilan professionnel</h2>
+        <p>Ce stage a constitué un véritable accélérateur de compétences, tant sur le plan technique que sur le plan
+            humain. Les semaines passées au sein d'EaneerDev m'ont permis de consolider mes acquis théoriques,
+            d'acquérir de nouvelles compétences pratiques et de développer une vision professionnelle du métier de
+            développeur Front-End.</p>
+
+        <h3 id="hard-skills">8.1. Compétences techniques (Hard Skills)</h3>
+        <p>Ce stage m'a permis de consolider mes acquis théoriques et d'acquérir de nouvelles compétences techniques
+            valorisantes et directement applicables dans le monde professionnel :</p>
+        <ul>
+            <li><strong>Maîtrise avancée de l'intégration web (HTML5, CSS3) :</strong> J'ai développé une capacité à
+                produire un code sémantique, accessible et conforme aux standards du W3C, avec une exigence de fidélité
+                au design (Pixel-Perfect) qui dépasse largement le niveau académique.</li>
+            <li><strong>Découverte et prise en main réussie du framework Next.js :</strong> Compréhension approfondie de
+                ses avantages par rapport à une application React classique (routage automatique, SSR/SSG, optimisation
+                des images, Server Components), et capacité à structurer un projet Front-End à l'échelle
+                professionnelle.</li>
+            <li><strong>Utilisation fluide et efficace de Tailwind CSS :</strong> Maîtrise du paradigme « utility-first
+                » pour le prototypage et le développement rapide d'interfaces stylisées, y compris la personnalisation
+                avancée de la configuration et l'utilisation de l'arbitrary value syntax.</li>
+            <li><strong>Amélioration significative de mes capacités d'analyse Figma :</strong> Capacité à extraire
+                efficacement les spécifications de design, à exporter les assets et à interpréter les prototypes
+                interactifs dans une optique de développement.</li>
+            <li><strong>Compréhension des enjeux du design Responsive :</strong> Application concrète des techniques
+                d'adaptation d'interface (Mobile-First, breakpoints, grilles adaptatives) et tests cross-browser
+                systématiques.</li>
+            <li><strong>Maîtrise de Git et du workflow collaboratif :</strong> Utilisation professionnelle de Git avec
+                des branches, des pull requests, la résolution de conflits et les bonnes pratiques de commit (messages
+                descriptifs, commits atomiques).</li>
+            <li><strong>Optimisation des performances web :</strong> Compréhension des facteurs de performance Front-End
+                et application de techniques concrètes (lazy loading, code splitting, compression d'images, purge CSS).
+            </li>
+            <li><strong>Débogage avancé :</strong> Utilisation experte de Chrome DevTools pour le débogage CSS,
+                l'inspection du DOM, la simulation mobile et l'analyse des performances.</li>
+        </ul>
+
+        <h3 id="soft-skills">8.2. Compétences humaines (Soft Skills)</h3>
+        <p>Au-delà de l'aspect technique, l'immersion chez EaneerDev a été très formatrice sur le plan professionnel et
+            humain. Ces compétences transversales sont tout aussi importantes que les compétences techniques dans une
+            carrière de développeur :</p>
+        <ul>
+            <li><strong>Travail en équipe et communication :</strong> J'ai appris l'importance de communiquer clairement
+                et régulièrement sur l'avancement de mon travail, que ce soit lors des daily stand-ups ou des échanges
+                informels. J'ai développé ma capacité à poser des questions constructives lorsque j'étais bloqué, à
+                formuler mes idées de manière structurée et à prendre en compte les retours critiques comme des
+                opportunités d'amélioration plutôt que des reproches.</li>
+            <li><strong>Autonomie et résolution de problèmes :</strong> J'ai développé ma capacité à chercher des
+                solutions par moi-même de manière autonome et méthodique. J'ai appris à consulter la documentation
+                officielle, à explorer les forums spécialisés (Stack Overflow, GitHub Issues), à lire le code source des
+                bibliothèques utilisées et à expérimenter des solutions avant de solliciter l'aide de l'équipe. Cette
+                autonomie est une qualité très recherchée par les employeurs.</li>
+            <li><strong>Rigueur et organisation :</strong> La nécessité de livrer un code propre, structuré et documenté
+                m'a imposé une rigueur professionnelle que je n'avais pas développée dans le cadre académique. J'ai
+                appris à organiser mes tâches, à respecter les délais et à maintenir un code source ordonné.</li>
+            <li><strong>Adaptabilité et apprentissage continu :</strong> Le stage m'a confronté à des technologies que
+                je ne maîtrisais pas initialement. J'ai dû m'adapter rapidement, apprendre de nouveaux outils en
+                contexte de production et sortir régulièrement de ma zone de confort. Cette expérience m'a rendu
+                confiant dans ma capacité à apprendre de nouvelles technologies tout au long de ma carrière.</li>
+            <li><strong>Gestion du stress et des priorités :</strong> Travailler sur un projet réel avec des délais
+                concrets m'a appris à gérer la pression de manière constructive, à prioriser mes tâches et à maintenir
+                la qualité de mon travail même dans les périodes chargées.</li>
+            <li><strong>Sens du détail et perfectionnisme constructif :</strong> L'exigence du pixel-perfect m'a
+                développé un œil aiguisé pour les détails visuels. J'ai appris à distinguer un travail « suffisant »
+                d'un travail « excellent », et à trouver le juste équilibre entre perfectionnisme et efficacité.</li>
+        </ul>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="page">
+        <h2 id="conclusion">9. Conclusion générale et perspectives</h2>
+        <p>En conclusion, ce stage de fin d'études au sein de l'entreprise <strong>EaneerDev</strong>, implantée dans
+            l'écosystème stimulant du Technopark, a été une expérience extrêmement positive et formatrice qui a
+            largement dépassé mes attentes initiales. Il a parfaitement répondu à ses objectifs en me plongeant dans la
+            réalité quotidienne du métier de développeur Front-End, avec ses défis techniques, ses exigences de qualité
+            et ses satisfactions professionnelles.</p>
+        <p>La mission qui m'a été confiée — le développement de l'interface d'une application web moderne — m'a permis
+            de mettre en pratique et d'étendre considérablement les connaissances acquises lors de ma formation à
+            l'OFPPT. La transition d'une maquette statique sur Figma vers une application interactive, responsive et
+            performante, propulsée par les technologies <strong>Next.js</strong> et <strong>Tailwind CSS</strong>, a été
+            un défi gratifiant qui m'a poussé à me dépasser continuellement.</p>
+        <p>Chaque étape du projet a contribué à forger mes compétences techniques : l'analyse minutieuse des maquettes
+            m'a appris la rigueur, le développement modulaire des composants m'a enseigné les bonnes pratiques
+            d'architecture logicielle, l'intégration pixel-perfect m'a développé le sens du détail, et l'optimisation
+            des performances m'a sensibilisé aux enjeux de l'expérience utilisateur dans un contexte réel.</p>
+        <p>L'encadrement bienveillant et professionnel de Monsieur <strong>Hamza Oubensalh</strong> a été un facteur
+            déterminant dans la réussite de ce stage. Il m'a non seulement guidé sur le plan technique, mais m'a aussi
+            initié aux exigences de qualité, de rigueur, de communication et de collaboration indispensables dans le
+            monde de l'entreprise. Ses retours constructifs et sa patience ont transformé chaque difficulté en une
+            opportunité d'apprentissage.</p>
+        <p>Ce stage m'a également offert une vision claire de ce que signifie être un développeur professionnel au
+            quotidien : la maîtrise des outils, certes, mais aussi la capacité à travailler en équipe, à communiquer
+            efficacement, à s'adapter aux changements et à maintenir une curiosité permanente face aux évolutions
+            technologiques.</p>
+
+        <div class="info-box">
+            <p style="margin-bottom: 10px;"><strong>Perspectives d'avenir :</strong></p>
+            <p>Fort de cette expérience, je suis désormais convaincu de vouloir poursuivre ma carrière dans le
+                développement web, avec une spécialisation en Front-End. Ce stage m'a ouvert les yeux sur plusieurs axes
+                de développement que je souhaite explorer :</p>
+            <ul style="margin-top: 10px;">
+                <li><strong>Approfondir mes compétences en React et Next.js</strong>, notamment en explorant des
+                    concepts avancés comme la gestion d'état globale (Redux, Zustand), les Server Actions, et les
+                    Streaming SSR.</li>
+                <li><strong>Explorer le développement Full-Stack</strong>, en complétant mes compétences Front-End par
+                    des connaissances en Back-End (Node.js, Express, bases de données) pour devenir un développeur plus
+                    polyvalent.</li>
+                <li><strong>M'intéresser au Web Design et à l'UX</strong>, pour pouvoir contribuer aux phases de
+                    conception en plus de l'intégration, et offrir une valeur ajoutée plus complète dans les projets.
+                </li>
+                <li><strong>Contribuer à des projets open-source</strong>, pour continuer à apprendre au contact de la
+                    communauté de développeurs et pour redonner à l'écosystème.</li>
+            </ul>
+        </div>
+
+        <div
+            style="background-color: var(--light-gray); padding: 20px; border-left: 4px solid var(--secondary-color); margin-top: 30px; border-radius: 4px;">
+            <p style="font-style: italic; margin-bottom: 0;"><strong>Bilan personnel :</strong><br>
+                Sur le plan personnel, cette immersion m'a apporté une grande confiance en mes capacités et une
+                motivation renouvelée. J'ai pris conscience que le développement digital est un domaine en constante
+                évolution qui exige de la curiosité, de l'humilité face aux technologies nouvelles et une remise en
+                question permanente. Ce stage me conforte dans mon choix de carrière : je sors de cette expérience
+                d'EaneerDev mieux préparé, plus confiant et profondément motivé pour relever de nouveaux défis
+                professionnels dans le monde passionnant du développement web.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

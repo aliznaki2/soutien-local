@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Mon premier post",
+      "author": "Ali"
+    },
+    {
+      "id": "3",
+      "title": "Débogage Axios",
+      "author": "Omar"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "postId": 1,
+      "body": "Super article !"
+    },
+    {
+      "id": "2",
+      "postId": 1,
+      "body": "Merci pour le partage."
+    },
+    {
+      "id": "3",
+      "postId": 2,
+      "body": "Très utile."
+    }
+  ],
+  "profile": {
+    "name": "Ali Znaki",
+    "role": "admin",
+    "email": "ali@example.com"
+  }
+}

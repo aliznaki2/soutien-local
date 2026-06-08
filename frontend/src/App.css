@@ -1,0 +1,71 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #4267B2;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  cursor: pointer;
+}
+
+.feed {
+  padding: 20px;
+}
+
+.post {
+  background: white;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.post img.profil {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+.actions button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #4267B2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background-color: #365899;
+}
+/* Pour styliser l'image dans les posts */
+.post img.profil {
+  width: 120px;            
+  height: 120px;           
+  object-fit: cover;       
+  border-radius: 8px;      
+  border: 2px solid #ccc;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+

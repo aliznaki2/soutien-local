@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Projet de Fin d'Études - SoutienLocal</title>
+    <style>
+        /* Styles de base et typographie */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            /* Typographie classique pour les rapports académiques */
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #e0e5ec;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            border: 1px #D3D3D3 solid;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* En-têtes */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Arial', sans-serif;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 24pt;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 18pt;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 14pt;
+            margin-top: 20px;
+            color: #2980b9;
+        }
+
+        /* Page de garde */
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            min-height: 250mm;
+        }
+
+        .university-name {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-size: 28pt;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 40px 0;
+            border: 3px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+        }
+
+        .project-type {
+            font-size: 16pt;
+            font-style: italic;
+            margin-bottom: 60px;
+        }
+
+        .student-info {
+            font-size: 14pt;
+            margin-top: auto;
+            margin-bottom: 40px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .student-info p {
+            margin: 5px 0;
+        }
+
+        .academic-year {
+            font-size: 12pt;
+            margin-top: auto;
+        }
+
+        /* Sommaire */
+        .toc {
+            margin-top: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .toc-item a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .toc-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .toc-text {
+            white-space: nowrap;
+        }
+
+        .toc-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted #7f8c8d;
+            margin: 0 5px;
+        }
+
+        .toc-page {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .toc-level-1 {
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 12px;
+        }
+
+        .toc-level-2 {
+            margin-left: 20px;
+            font-size: 11pt;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 20mm;
+            right: 20mm;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Arial', sans-serif;
+            font-size: 9pt;
+            color: #7f8c8d;
+            border-top: 1px solid var(--border-color);
+            padding-top: 5px;
+        }
+
+        /* Contenu */
+        p {
+            text-align: justify;
+            margin-bottom: 15px;
+            font-size: 12pt;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 15px;
+            font-size: 12pt;
+        }
+
+        li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: 'Arial', sans-serif;
+            font-size: 11pt;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+        }
+
+        /* Code et structure */
+        pre {
+            background-color: var(--light-gray);
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 10pt;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .req-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .req-list li {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            background: #f0f7fc;
+            font-size: 10.5pt;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .req-list li.sec-req {
+            border-color: #9b59b6;
+            background: #faf5ff;
+        }
+
+        /* Captures d'écran */
+        .screenshot-container {
+            margin: 20px 0;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--light-gray);
+            page-break-inside: avoid;
+        }
+
+        .screenshot {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot-caption {
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            color: #555;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Utilitaires d'impression */
+        .page-break {
+            page-break-before: always;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .page {
+                margin: 0;
+                border: none;
+                border-radius: 0;
+                width: 210mm;
+                height: 297mm;
+                box-shadow: none;
+                background: white;
+                page-break-after: always;
+                page-break-inside: avoid;
+                padding: 15mm 20mm;
+                box-sizing: border-box;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .page:last-child {
+                page-break-after: avoid;
+            }
+
+            /* Ajustement des polices légèrement plus grandes pour une lecture confortable */
+            h1 { font-size: 22pt; margin-bottom: 15px; }
+            h2 { font-size: 17pt; margin-top: 15px; margin-bottom: 8px; }
+            h3 { font-size: 13pt; margin-top: 12px; margin-bottom: 6px; }
+            p { font-size: 11pt; line-height: 1.4; margin-bottom: 8px; text-align: justify; }
+            ul, ol { font-size: 11pt; margin-bottom: 8px; }
+            li { margin-bottom: 4px; }
+            table { margin: 10px 0; font-size: 10pt; }
+            th, td { padding: 6px 8px; }
+            pre { padding: 8px 12px; font-size: 8.5pt; margin: 8px 0; }
+            .screenshot-container { margin: 10px 0; padding: 6px; }
+            .screenshot { max-height: 180px !important; width: auto !important; }
+            .mermaid { margin: 10px 0 !important; transform: scale(0.9); transform-origin: top center; }
+            .page-footer { bottom: 6mm; left: 20mm; right: 20mm; }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            mermaid.initialize({ startOnLoad: true });
+        });
+    </script>
+</head>
+
+<body>
+
+    <!-- PAGE DE GARDE -->
+    <div class="page cover-page">
+        <div
+            style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-bottom: 50px; width: 100%;">
+            <img src="ofppt.png" alt="OFPPT Logo" style="max-height: 100px; object-fit: contain;">
+            <div class="university-name" style="margin-bottom: 0; text-align: left;">
+                Office de la Formation Professionnelle<br>et de la Promotion du Travail
+            </div>
+        </div>
+
+        <div class="project-type">
+            Rapport de Projet de Fin d'Études (PFE)<br>
+            Développement Web Full-Stack <br>
+            Conception et Réalisation d'une Plateforme Web
+        </div>
+
+        <div class="project-title">
+            SOUTIEN LOCAL<br>
+            <span style="font-size: 16pt; font-weight: normal; color: var(--primary-color);">Plateforme de mise en
+                relation pour le soutien scolaire</span>
+        </div>
+
+        <div class="student-info">
+            <p><strong>Réalisé par :</strong> Ali znaki & Walid bensghir</p>
+            <p><strong>Encadré par : :</strong> Naima El Alami, Ichraf Nachite </p>
+            <p><strong>Technologies :</strong> React.js, Laravel 11, MySQL, REST API</p>
+        </div>
+
+        <div class="academic-year">
+            Année universitaire 2025/2026
+        </div>
+    </div>
+
+        <!-- SOMMAIRE -->
+    <div class="page">
+        <h2 style="text-align: center; border: none; margin-top: 0;">Sommaire</h2>
+        <div class="toc">
+            <div class="toc-item toc-level-1">
+                <a href="#chapitre1" class="toc-text">Chapitre 1 : Remerciements</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">3</span>
+            </div>
+
+            <div class="toc-item toc-level-1">
+                <a href="#chapitre_orga" class="toc-text">Chapitre 2 : Présentation de l'organisme d'accueil</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">4</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#orga_ident" class="toc-text">2.1 Identification de l'organisme</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">4</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#orga_missions" class="toc-text">2.2 Missions et activités de l'OFPPT</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">4</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#orga_structure" class="toc-text">2.3 Structure organisationnelle de l'établissement</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">5</span>
+            </div>
+
+            <div class="toc-item toc-level-1">
+                <a href="#chapitre_gestion" class="toc-text">Chapitre 3 : Gestion et planification du projet</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">6</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#gest_scrum" class="toc-text">3.1 Cadre méthodologique (Scrum/Agile)</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">6</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#gest_plan" class="toc-text">3.2 Planification temporelle et Jalons</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">7</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#gest_gantt_pert" class="toc-text">3.3 Outils de planification (Gantt &amp; PERT)</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">8</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#gest_risques" class="toc-text">3.4 Analyse des risques et suivi</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">9</span>
+            </div>
+
+            <div class="toc-item toc-level-1">
+                <a href="#chapitre_analyse" class="toc-text">Chapitre 4 : Analyse et spécification des besoins</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">10</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#anal_existant" class="toc-text">4.1 Contexte du projet et étude de l'existant</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">10</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#anal_fonctionnels" class="toc-text">4.2 Spécification des besoins fonctionnels</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">11</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#anal_nonfonc" class="toc-text">4.3 Besoins non-fonctionnels et Acteurs</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">12</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#anal_scenarios" class="toc-text">4.4 Description détaillée des cas d'utilisation</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">13</span>
+            </div>
+
+            <div class="toc-item toc-level-1">
+                <a href="#chapitre_conception" class="toc-text">Chapitre 5 : Conception du système</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">14</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#conc_arch" class="toc-text">5.1 Architecture générale</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">14</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#conc_tech" class="toc-text">5.2 Choix technologiques et justifications</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">15</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#conc_mcd_mld" class="toc-text">5.3 Modélisation des données (MCD &amp; MLD)</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">16</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#conc_dict" class="toc-text">5.4 Dictionnaire de données</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">17</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#conc_classes" class="toc-text">5.5 Diagramme de classes UML</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">18</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#conc_sequences" class="toc-text">5.6 Diagrammes de séquence UML</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">19</span>
+            </div>
+
+            <div class="toc-item toc-level-1">
+                <a href="#chapitre_realisation" class="toc-text">Chapitre 6 : Réalisation du projet</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">20</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#real_env" class="toc-text">6.1 Environnement de développement et installation</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">20</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#real_arbo" class="toc-text">6.2 Architecture physique du projet (React/Laravel)</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">21</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#real_back" class="toc-text">6.3 Implémentation du Backend et API REST</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">22</span>
+            </div>
+            <div class="toc-item toc-level-2">
+                <a href="#real_front" class="toc-text">6.4 Implémentation du Frontend et Sécurité</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">23</span>
+            </div>
+
+            <div class="toc-item toc-level-1">
+                <a href="#chapitre_tests" class="toc-text">Chapitre 7 : Tests, validation et déploiement</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">24</span>
+            </div>
+
+            <div class="toc-item toc-level-1">
+                <a href="#conclusion" class="toc-text">Conclusion générale et perspectives</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">25</span>
+            </div>
+            <div class="toc-item toc-level-1">
+                <a href="#annexes" class="toc-text">Annexes, Manuel &amp; Webographie</a>
+                <span class="toc-dots"></span>
+                <span class="toc-page">25</span>
+            </div>
+        </div>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 2</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 1 ================= -->
+    <div class="page">
+        <h2 id="chapitre1">Chapitre 1 : Remerciements</h2>
+
+        <p>Au terme de la réalisation de ce projet, je tiens à exprimer ma profonde gratitude à toutes les personnes qui
+            ont contribué, de près ou de loin, à son accomplissement.</p>
+
+        <p>Je remercie tout particulièrement mon <strong>professeur encadrant</strong> pour son accompagnement, sa
+            disponibilité, ses conseils avisés et son soutien constant tout au long de ce travail. Grâce à son
+            expertise, à ses orientations pertinentes et à ses remarques constructives, j'ai pu mener ce projet dans les
+            meilleures conditions et enrichir mes connaissances techniques et professionnelles.</p>
+
+        <p>J'adresse également mes sincères remerciements à mon <strong>professeur parrain</strong> pour son suivi, ses
+            encouragements et l'intérêt qu'il a porté à ce projet. Son soutien a constitué une source de motivation tout
+            au long de cette expérience.</p>
+
+        <p>Je tiens aussi à remercier l'ensemble du <strong>corps enseignant</strong> ainsi que le <strong>personnel
+                administratif</strong> de l'établissement pour la qualité de la formation dispensée, les connaissances
+            transmises et les valeurs inculquées durant mon parcours académique.</p>
+
+        <p>Mes remerciements s'adressent également à ma <strong>famille</strong> pour son soutien indéfectible, sa
+            patience, sa confiance et ses encouragements permanents. Leur présence et leur appui moral ont été
+            essentiels à la réussite de ce projet.</p>
+
+        <p>Enfin, je remercie chaleureusement mes <strong>amis</strong> ainsi que toutes les personnes qui m'ont apporté
+            leur aide, leurs conseils ou leurs encouragements, contribuant ainsi directement ou indirectement à la
+            réalisation de ce travail.</p>
+
+        <p style="margin-top: 40px; font-style: italic;">À toutes ces personnes, j'adresse mes plus sincères
+            remerciements et ma profonde reconnaissance.</p>
+
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 3</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 2 ================= -->
+    <div class="page">
+        <h2 id="chapitre_orga">Chapitre 2 : Présentation de l'organisme d'accueil</h2>
+        <h3 id="orga_ident">2.1 Identification de l'organisme</h3>
+        <p>L'<strong>Office de la Formation Professionnelle et de la Promotion du Travail (OFPPT)</strong> constitue le
+            principal opérateur public de formation professionnelle au Maroc. Créé sous forme d'établissement public doté
+            de la personnalité morale et de l'autonomie financière, cet organisme a été mis en place afin de
+            répondre aux besoins croissants du marché de l'emploi en formant une main-d'œuvre qualifiée et compétente
+            dans différents domaines d'activité.</p>
+
+        <p>Avec l'essor économique du Royaume, l'OFPPT s'est positionné comme le levier stratégique de développement de
+            la compétitivité des entreprises. Grâce à son réseau national d'instituts et de centres de formation répartis dans
+            l'ensemble du Royaume, l'OFPPT offre aux jeunes l'opportunité d'acquérir des connaissances théoriques solides
+            et des compétences pratiques favorisant leur insertion immédiate dans la vie active.</p>
+
+        <h3 id="orga_missions">2.2 Missions et activités</h3>
+        <p>Afin de remplir ses objectifs nationaux de développement, l'OFPPT assure plusieurs missions essentielles :</p>
+        <ul>
+            <li><strong>La formation initiale :</strong> Offrir des cursus diplômants dans des métiers variés (technologies, gestion, artisanat, industrie).</li>
+            <li><strong>La formation continue :</strong> Renforcer et actualiser les compétences des salariés des entreprises partenaires.</li>
+            <li><strong>L'insertion professionnelle :</strong> Accompagner les jeunes diplômés dans leur transition vers le marché du travail.</li>
+            <li><strong>Le conseil aux entreprises :</strong> Aider à identifier les besoins en compétences et à concevoir des plans de formation adaptés.</li>
+            <li><strong>L'innovation pédagogique :</strong> Moderniser les méthodes d'apprentissage à travers les technologies de l'information et de la communication (e-learning).</li>
+        </ul>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 4</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 2 (Suite) ================= -->
+    <div class="page">
+        <h3 id="orga_structure">2.3 Structure organisationnelle de l'établissement</h3>
+        <p>La gouvernance de l'OFPPT repose sur un conseil d'administration tripartite composé de représentants de l'État,
+            des organisations d'employeurs et des représentants des salariés. Cette structure garantit que les programmes
+            de formation restent en phase avec les besoins réels de l'économie nationale.</p>
+        <p>Au niveau opérationnel, l'OFPPT s'articule autour de directions régionales qui supervisent les complexes de
+            formation. Chaque établissement (ou complexe) est dirigé par un Directeur, assisté par un Directeur des
+            Études et des chefs de travaux qui coordonnent les activités des formateurs et des stagiaires.</p>
+        
+        <p>Voici un schéma descriptif simplifié de l'organisation d'un institut type de l'OFPPT :</p>
+        <div class="mermaid" style="text-align: center; margin: 20px 0;">
+            graph TD
+            DG["Direction Générale de l'OFPPT"] --> DR["Directions Régionales"]
+            DR --> DI["Direction de l'Institut / Complexe"]
+            DI --> DE["Direction des Études"]
+            DI --> SG["Service Gestion Stagiaires & Administration"]
+            DE --> CF["Corps Formateur / Professeurs"]
+            CF --> ST["Stagiaires / Étudiants"]
+        </div>
+        <p>Cette structuration administrative assure le bon déroulement des cours théoriques et pratiques, la gestion des
+            examens et le suivi des stages de fin d'études en entreprise ou de projets de fin d'études (PFE) comme celui-ci,
+            favorisant une insertion harmonieuse dans le tissu socio-professionnel.</p>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 5</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 3 ================= -->
+    <div class="page">
+        <h2 id="chapitre_gestion">Chapitre 3 : Gestion et planification du projet</h2>
+        <h3 id="gest_scrum">3.1 Cadre méthodologique (Scrum/Agile)</h3>
+        <p>Le projet <strong>SoutienLocal</strong> a été mené selon la méthodologie <strong>Scrum (Agile)</strong>. Cette
+            approche de gestion de projet permet un développement incrémental et itératif, assurant une adaptabilité
+            optimale face aux contraintes et aux ajustements fonctionnels. L'équipe projet a été organisée en rôles clairs :</p>
+        <ul>
+            <li><strong>Product Owner (Client / Encadrant) :</strong> Définit la vision du produit, priorise le Backlog et
+                valide les fonctionnalités livrées à chaque fin de Sprint.</li>
+            <li><strong>Scrum Master / Équipe de Développement (Ali Znaki &amp; Walid Bensghir) :</strong> Assure le développement,
+                résout les obstacles techniques et veille à l'application des bonnes pratiques de développement.</li>
+        </ul>
+        <p>Le développement s'est découpé en Sprints successifs de 7 à 10 jours. Chaque Sprint commençait par une planification
+            des tâches (Sprint Planning) et se clôturait par une revue et une démonstration des incréments logiciels validés par l'encadrant.</p>
+        <p>Cette méthodologie a permis de diviser la complexité du projet (frontend et backend séparés) et de minimiser les risques
+            d'intégration tardive, en garantissant un flux continu de livraisons.</p>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 6</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 3 (Suite) ================= -->
+    <div class="page">
+        <h3 id="gest_plan">3.2 Planification temporelle et Jalons</h3>
+        <p>La planification du projet s'est déroulée sur une durée globale de <strong>8 semaines </strong>.
+            Les tâches clés ont été listées, évaluées en termes d'effort (jours de travail) et ordonnées de manière logique :</p>
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Tâche</th>
+                <th>Description</th>
+                <th>Durée</th>
+                <th>Prédécesseurs</th>
+            </tr>
+            <tr>
+                <td>T1</td>
+                <td>Analyse et Spécifications</td>
+                <td>Étude des besoins, rédaction du cahier des charges.</td>
+                <td>7 j</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>T2</td>
+                <td>Conception UML</td>
+                <td>Réalisation des diagrammes de cas d'utilisation, classes et séquences.</td>
+                <td>7 j</td>
+                <td>T1</td>
+            </tr>
+            <tr>
+                <td>T3</td>
+                <td>Setup Environnement</td>
+                <td>Configuration de Laravel 11, React.js et installation de MySQL.</td>
+                <td>5 j</td>
+                <td>T2</td>
+            </tr>
+            <tr>
+                <td>T4</td>
+                <td>Développement API REST</td>
+                <td>Création des modèles, contrôleurs et routes d'API Laravel.</td>
+                <td>15 j</td>
+                <td>T3</td>
+            </tr>
+            <tr>
+                <td>T5</td>
+                <td>Développement Frontend</td>
+                <td>Intégration de l'interface en React et intégration d'Axios.</td>
+                <td>15 j</td>
+                <td>T2</td>
+            </tr>
+            <tr>
+                <td>T6</td>
+                <td>Tests et Corrections</td>
+                <td>Tests d'intégration, corrections CORS et validation des fonctionnalités.</td>
+                <td>10 j</td>
+                <td>T4, T5</td>
+            </tr>
+        </table>
+        <p>Ces estimations prennent en compte les phases d'auto-apprentissage nécessaires à l'implémentation de Laravel Sanctum
+            pour la sécurisation de notre API.</p>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 7</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 3 (Suite 2) ================= -->
+    <div class="page">
+        <h3 id="gest_gantt_pert">3.3 Outils de planification (Gantt &amp; PERT)</h3>
+        <p>Pour assurer le suivi du calendrier de développement, nous avons conçu un <strong>diagramme de Gantt</strong> qui permet
+            de visualiser le chevauchement des phases de développement frontend et backend :</p>
+        <div class="screenshot-container" style="margin-top: 10px; margin-bottom: 20px;">
+            <img src="Gant.PNG" alt="Diagramme de Gantt" class="screenshot" style="max-height: 250px;">
+            <div class="screenshot-caption">Figure 3.1 — Planning et enchaînement des tâches sur 5 semaines.</div>
+        </div>
+        <p>En parallèle, le <strong>réseau PERT</strong> a été construit pour mettre en évidence les dépendances techniques entre
+            les tâches et identifier le <strong>chemin critique</strong>. Les tâches T3 (Setup) et T4 (API Backend) sont sur le
+            chemin critique car toute dérive sur celles-ci repousse la livraison finale :</p>
+        <div class="mermaid" style="text-align: center; margin: 20px 0;">
+            flowchart LR
+            Start([Début]) --> T1[T1 Analyse 7j]
+            T1 --> T2[T2 Conception 7j]
+            T2 --> T3[T3 Setup Laravel 5j]
+            T3 --> T4[T4 API Backend 15j]
+            T2 --> T5[T5 Frontend React 15j]
+            T4 --> T6[T6 Tests & Corrections 10j]
+            T5 --> T6
+            T6 --> End([Fin])
+            style T1 fill:#3498db,color:white
+            style T3 fill:#e74c3c,color:white
+            style T4 fill:#e74c3c,color:white
+            style T6 fill:#2ecc71,color:white
+        </div>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 8</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 3 (Suite 3) ================= -->
+    <div class="page">
+        <h3 id="gest_risques">3.4 Analyse des risques et suivi</h3>
+        <p>Une démarche proactive d'analyse des risques a été menée pour anticiper les anomalies potentielles durant le cycle de
+            développement. Ce tableau liste les menaces clés ainsi que leurs mesures correctives :</p>
+        <table>
+            <tr>
+                <th>Risque potentiel</th>
+                <th>Impact</th>
+                <th>Probabilité</th>
+                <th>Mesures d'atténuation / Solutions</th>
+            </tr>
+            <tr>
+                <td><strong>Problèmes CORS</strong></td>
+                <td>Moyen</td>
+                <td>Haute</td>
+                <td>Configuration rigoureuse des en-têtes dans le backend Laravel et utilisation d'un proxy local.</td>
+            </tr>
+            <tr>
+                <td><strong>Retard responsive</strong></td>
+                <td>Élevé</td>
+                <td>Moyenne</td>
+                <td>Adopter l'approche Mobile-First et utiliser un système de grille fluide natif en CSS.</td>
+            </tr>
+            <tr>
+                <td><strong>Sécurité des données</strong></td>
+                <td>Critique</td>
+                <td>Basse</td>
+                <td>Hachage fort des mots de passe et validation systématique de toutes les entrées utilisateur côté API.</td>
+            </tr>
+            <tr>
+                <td><strong>Perte de code / conflits</strong></td>
+                <td>Moyen</td>
+                <td>Moyenne</td>
+                <td>Utilisation stricte de Git avec des branches de fonctionnalités distinctes et des commits réguliers.</td>
+            </tr>
+        </table>
+        <p>Le suivi quotidien des tâches a été centralisé sur le gestionnaire de projet <strong>Trello</strong>, matérialisant visuellement
+            les tâches à faire (To Do), en cours (In Progress) et terminées (Done). Cela a permis une synchronisation constante
+            entre les deux développeurs.</p>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 9</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 4 ================= -->
+    <div class="page">
+        <h2 id="chapitre_analyse">Chapitre 4 : Analyse et spécification des besoins</h2>
+        <h3 id="anal_existant">4.1 Contexte du projet et étude de l'existant</h3>
+        <p>Le soutien scolaire est devenu un service indispensable pour de nombreux élèves afin d'améliorer leurs résultats
+            scolaires. Cependant, les modalités traditionnelles de mise en relation entre tuteurs et élèves présentent des lacunes importantes.</p>
+        <p><strong>Étude de l'existant :</strong><br>Actuellement, les élèves et les parents d'élèves s'appuient principalement sur :</p>
+        <ul>
+            <li>Le bouche-à-oreille au sein de l'entourage familial ou amical.</li>
+            <li>Les petites annonces publiées sur les réseaux sociaux (Facebook, WhatsApp) ou des sites de petites annonces généralistes.</li>
+            <li>Les affichages physiques dans les commerces de proximité.</li>
+        </ul>
+        <p><strong>Critique de l'existant :</strong><br>Ces canaux souffrent de limites majeures :</p>
+        <ul>
+            <li><strong>Manque de transparence :</strong> Les tarifs ne sont pas uniformes ni affichés clairement à l'avance, ce qui complique les comparaisons.</li>
+            <li><strong>Absence de vérification :</strong> Aucun mécanisme ne permet de valider les diplômes ou les compétences réelles des tuteurs.</li>
+            <li><strong>Pas de suivi :</strong> Il n'existe pas de plateforme intégrée pour planifier les réservations, suivre l'historique ou donner des avis constructifs sur la qualité du soutien scolaire.</li>
+        </ul>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 10</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 4 (Suite) ================= -->
+    <div class="page">
+        <h3 id="anal_fonctionnels">4.2 Spécification des besoins fonctionnels</h3>
+        <p>Les fonctionnalités attendues de l'application <strong>SoutienLocal</strong> sont regroupées par espace utilisateur afin
+            de couvrir l'ensemble des cas d'utilisation identifiés :</p>
+        
+        <h4>Espace Élève &amp; Parent :</h4>
+        <ul class="req-list">
+            <li><strong>F1 — Connexion &amp; Inscription :</strong> Création et gestion d'un compte élève.</li>
+            <li><strong>F2 — Recherche avancée :</strong> Moteur de recherche multicritère (matière, tarif horaire, ville, évaluation globale).</li>
+            <li><strong>F3 — Profil des tuteurs :</strong> Consultation détaillée de la biographie, méthodologie et diplômes.</li>
+            <li><strong>F4 — Réservation de cours :</strong> Planification d'une séance via un calendrier interactif.</li>
+            <li><strong>F5 — Avis &amp; Notation :</strong> Notation sur 5 étoiles et commentaire laissé après chaque séance réalisée.</li>
+            <li><strong>F6 — Dashboard élève :</strong> Suivi des cours acceptés et budget total dépensé.</li>
+        </ul>
+
+        <h4>Espace Tuteur (Enseignant) :</h4>
+        <ul class="req-list">
+            <li><strong>T1 — Gestion du profil tuteur :</strong> Saisie des matières enseignées, description de la méthodologie et prix horaire (MAD).</li>
+            <li><strong>T2 — Agenda des cours :</strong> Acceptation, rejet ou annulation des demandes de cours envoyées par les élèves.</li>
+            <li><strong>T3 — Suivi des gains :</strong> Dashboard avec statistiques de revenus et heures de soutien effectuées.</li>
+        </ul>
+
+        <h4>Espace Administrateur :</h4>
+        <ul class="req-list sec-req">
+            <li class="sec-req"><strong>A1 — Dashboard centralisé :</strong> Indicateurs clés sur l'activité (nombre d'inscrits, réservations du mois).</li>
+            <li class="sec-req"><strong>A2 — Modération des profils :</strong> Suspension des comptes tuteurs signalés ou inappropriés.</li>
+        </ul>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 11</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 4 (Suite 2) ================= -->
+    <div class="page">
+        <h3 id="anal_nonfonc">4.3 Besoins non-fonctionnels et Acteurs</h3>
+        <p>Les exigences non fonctionnelles décrivent les caractéristiques de qualité de la plateforme :</p>
+        <ul>
+            <li><strong>Sécurité :</strong> Chiffrement obligatoire des mots de passe en base de données avec bcrypt. Accès sécurisé à l'API via jetons cryptographiques Bearer Tokens (Laravel Sanctum).</li>
+            <li><strong>Ergonomie &amp; Responsive :</strong> L'interface utilisateur doit s'adapter automatiquement aux smartphones, tablettes et ordinateurs de bureau pour une expérience fluide.</li>
+            <li><strong>Temps de réponse :</strong> Le chargement des pages doit s'effectuer en moins de 2 secondes afin de garantir la fluidité.</li>
+            <li><strong>Fiabilité :</strong> Gestion transparente des cas d'erreur de connexion à l'API avec des messages explicatifs.</li>
+        </ul>
+
+        <h3>Acteurs du système</h3>
+        <p>Les trois acteurs qui interagissent avec l'application sont :</p>
+        <ol>
+            <li><strong>L'élève (ou son parent) :</strong> Effectue des recherches et sollicite des séances de cours.</li>
+            <li><strong>Le tuteur (professeur) :</strong> Propose ses services de soutien scolaire, définit ses tarifs et accepte les cours.</li>
+            <li><strong>L'administrateur :</strong> Supervise le bon fonctionnement de la plateforme et modère les utilisateurs.</li>
+        </ol>
+
+        <h3 style="margin-top: 15px;">Diagramme de cas d'utilisation UML</h3>
+        <div class="screenshot-container" style="margin-top: 10px;">
+            <img src="usecase.PNG" alt="Diagramme de Cas d'Utilisation UML" class="screenshot" style="max-height: 250px;">
+            <div class="screenshot-caption">Figure 4.1 — Acteurs et interactions principales dans la plateforme.</div>
+        </div>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 12</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 4 (Suite 3) ================= -->
+    <div class="page">
+        <h3 id="anal_scenarios">4.4 Description détaillée des cas d'utilisation</h3>
+        <p>Afin de mieux cerner le comportement fonctionnel de l'application, nous décrivons ici le cas d'utilisation clé <strong>"Réserver une séance de soutien scolaire"</strong> sous forme de scénarios nominaux et alternatifs :</p>
+        
+        <p><strong>Cas d'utilisation : Réserver une séance de cours</strong></p>
+        <ul>
+            <li><strong>Acteur principal :</strong> Élève / Parent.</li>
+            <li><strong>Pré-conditions :</strong> L'élève doit être connecté à son compte personnel.</li>
+        </ul>
+        
+        <p><strong>Scénario Nominal :</strong></p>
+        <ol>
+            <li>L'élève consulte la liste des tuteurs et sélectionne un tuteur spécifique.</li>
+            <li>L'élève clique sur le bouton "Réserver un cours" sur la fiche du tuteur.</li>
+            <li>Le système affiche la fenêtre modale de réservation.</li>
+            <li>L'élève sélectionne la matière concernée, choisit une date et une heure de début, saisit un message descriptif des lacunes de l'élève, et valide le formulaire.</li>
+            <li>Le système envoie la requête à l'API Laravel qui valide les informations.</li>
+            <li>Le système insère la réservation en base de données avec le statut "En attente de confirmation".</li>
+            <li>Un message de confirmation de demande de cours s'affiche à l'écran.</li>
+        </ol>
+
+        <p><strong>Scénarios Alternatifs et d'Exceptions :</strong></p>
+        <ul>
+            <li><strong>Exception 4.a (Date invalide) :</strong> Si l'élève sélectionne une date antérieure à la date actuelle, le système bloque la validation et affiche le message "La date choisie ne peut pas être passée".</li>
+            <li><strong>Exception 5.a (Serveur injoignable) :</strong> Si l'API backend ne répond pas, le frontend intercepte l'erreur réseau et affiche un message d'alerte sans bloquer l'interface.</li>
+        </ul>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 13</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 5 ================= -->
+    <div class="page">
+        <h2 id="chapitre_conception">Chapitre 5 : Conception du système</h2>
+        <h3 id="conc_arch">5.1 Architecture générale</h3>
+        <p>L'application <strong>SoutienLocal</strong> adopte une architecture <strong>Client-Serveur découplée (SPA)</strong>. Le client (React.js) fonctionne en autonomie complète dans le navigateur de l'utilisateur, tandis que le serveur (Laravel) gère uniquement la logique métier et l'accès aux données sous forme d'une API RESTful sécurisée.</p>
+        
+        <p style="margin-bottom: 5px;">Ce choix présente de nombreux avantages stratégiques :</p>
+        <ul>
+            <li><strong>Fluidité de l'expérience utilisateur :</strong> Aucun rechargement global de page n'est requis. Seuls les composants concernés se mettent à jour.</li>
+            <li><strong>Déploiement indépendant :</strong> Le frontend et le backend peuvent être hébergés sur des serveurs distincts et optimisés indépendamment.</li>
+            <li><strong>Évolution vers le mobile :</strong> L'API REST développée peut être réutilisée directement sans modification pour alimenter une future application mobile (Android/iOS).</li>
+        </ul>
+        
+        <p>Le diagramme ci-dessous illustre le flux d'informations et l'interaction entre les différentes couches logicielles du système :</p>
+        <div class="mermaid" style="text-align: center; margin: 15px 0;">
+            graph LR
+            UI["Navigateur (React SPA)"] -->|"Requêtes HTTP (JSON)"| API["Routes API (Laravel)"]
+            API -->|"Middleware (Sanctum)"| Controller["Contrôleurs Métier"]
+            Controller -->|"Eloquent ORM"| DB["Base de données (MySQL)"]
+            DB -->|"Données brutes"| Controller
+            Controller -->|"Réponse HTTP (JSON)"| UI
+        </div>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 14</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 5 (Suite) ================= -->
+    <div class="page">
+        <h3 id="conc_tech">5.2 Choix technologiques et justifications</h3>
+        <p>Le choix de notre stack technique a été guidé par des impératifs d'efficacité, de performance et de maintenabilité de l'application :</p>
+        
+        <ul>
+            <li><strong>React.js (Frontend) :</strong> Bibliothèque JavaScript développée par Meta. React permet de structurer l'interface sous forme de composants réutilisables et autonomes. Son Virtual DOM permet des mises à jour rapides de l'interface en réponse aux interactions utilisateur.</li>
+            <li><strong>Laravel (Backend) :</strong> Framework PHP robuste et structuré suivant le modèle MVC (Modèle-Vue-Contrôleur). Laravel offre un écosystème performant prêt à l'emploi (migrations, ORM Eloquent, routage d'API, sécurité) qui accélère considérablement le développement d'APIs complexes.</li>
+            <li><strong>MySQL (Base de données) :</strong> Système de gestion de base de données relationnelle open-source réputé pour sa robustesse et sa rapidité d'exécution sur des architectures de taille moyenne.</li>
+            <li><strong>Laravel Sanctum (Sécurité) :</strong> Offre un système d'authentification par jeton API (Token Bearer) extrêmement léger, idéal pour sécuriser les communications entre une Single Page Application (SPA) et une API REST.</li>
+            <li><strong>Axios (Communication) :</strong> Client HTTP basé sur les Promesses, facilitant l'envoi de requêtes asynchrones, la gestion des timeouts et l'interception automatique des jetons d'autorisation.</li>
+        </ul>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 15</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 5 (Suite 2) ================= -->
+    <div class="page">
+        <h3 id="conc_mcd_mld">5.3 Modélisation des données (MCD &amp; MLD)</h3>
+        <p>La conception de la structure de données repose sur l'analyse rigoureuse des informations à manipuler. Le Modèle Conceptuel de Données (MCD) structure les entités et définit leurs associations :</p>
+        
+        <div class="screenshot-container" style="margin-top: 10px; margin-bottom: 15px;">
+            <img src="mcd.PNG" alt="Modèle Conceptuel de Données MCD" class="screenshot" style="max-height: 250px;">
+            <div class="screenshot-caption">Figure 5.1 — Modèle Conceptuel de Données (MCD) et associations.</div>
+        </div>
+
+        <p>Le <strong>Modèle Logique de Données (MLD)</strong> en découle directement, explicitant les clés primaires et les contraintes d'intégrité référentielle (clés étrangères) :</p>
+        <ul style="font-family: 'Arial', sans-serif; font-size: 10.5pt;">
+            <li><strong>USERS</strong> (<u>id</u>, name, email, password, role, created_at, updated_at)</li>
+            <li><strong>TUTORS</strong> (<u>id</u>, <i>#user_id</i>, subjects, city, level, price, rating, bio, experience, education, method, avatar)</li>
+            <li><strong>BOOKINGS</strong> (<u>id</u>, <i>#user_id</i>, <i>#tutor_id</i>, date, time, subject, message, status, created_at, updated_at)</li>
+            <li><strong>REVIEWS</strong> (<u>id</u>, <i>#user_id</i>, <i>#tutor_id</i>, rating, comment, created_at, updated_at)</li>
+        </ul>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 16</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 5 (Suite 3) ================= -->
+    <div class="page">
+        <h3 id="conc_dict">5.4 Dictionnaire de données</h3>
+        <p>Le dictionnaire de données détaille les caractéristiques physiques des principaux attributs de nos tables SQL :</p>
+        
+        <h4>Table : users</h4>
+        <table style="font-size: 9.5pt; margin-bottom: 20px;">
+            <tr>
+                <th>Attribut</th>
+                <th>Type</th>
+                <th>Contrainte</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>BIGINT AUTO_INC</td>
+                <td>PK</td>
+                <td>Identifiant unique de l'utilisateur.</td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>VARCHAR(100)</td>
+                <td>NOT NULL</td>
+                <td>Nom complet de l'utilisateur.</td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>VARCHAR(150)</td>
+                <td>UNIQUE</td>
+                <td>Email d'inscription (sert de login).</td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td>VARCHAR(255)</td>
+                <td>NOT NULL</td>
+                <td>Mot de passe crypté via bcrypt.</td>
+            </tr>
+            <tr>
+                <td>role</td>
+                <td>ENUM('student', 'tutor', 'admin')</td>
+                <td>DEFAULT 'student'</td>
+                <td>Rôle utilisateur dans l'application.</td>
+            </tr>
+        </table>
+
+        <h4>Table : bookings</h4>
+        <table style="font-size: 9.5pt;">
+            <tr>
+                <th>Attribut</th>
+                <th>Type</th>
+                <th>Contrainte</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>BIGINT AUTO_INC</td>
+                <td>PK</td>
+                <td>Identifiant unique de la réservation.</td>
+            </tr>
+            <tr>
+                <td>user_id</td>
+                <td>BIGINT</td>
+                <td>FK (users)</td>
+                <td>Identifiant de l'élève qui réserve.</td>
+            </tr>
+            <tr>
+                <td>tutor_id</td>
+                <td>BIGINT</td>
+                <td>FK (tutors)</td>
+                <td>Identifiant du professeur concerné.</td>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td>DATE</td>
+                <td>NOT NULL</td>
+                <td>Date de la séance de soutien.</td>
+            </tr>
+            <tr>
+                <td>status</td>
+                <td>ENUM('pending', 'confirmed', 'cancelled')</td>
+                <td>DEFAULT 'pending'</td>
+                <td>État d'avancement de la séance.</td>
+            </tr>
+        </table>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 17</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 5 (Suite 4) ================= -->
+    <div class="page">
+        <h3 id="conc_classes">5.5 Diagramme de classes UML</h3>
+        <p>Le diagramme de classes UML permet de modéliser la structure statique du système en définissant les classes, leurs attributs et méthodes, ainsi que leurs associations de cardinalité :</p>
+        
+        <div class="screenshot-container" style="margin-top: 15px; margin-bottom: 20px;">
+            <img src="class.PNG" alt="Diagramme de classes UML" class="screenshot" style="max-height: 250px;">
+            <div class="screenshot-caption">Figure 5.2 — Diagramme de classes UML modélisant la structure du code.</div>
+        </div>
+
+        <p>Ce diagramme met en évidence la relation de spécialisation entre un utilisateur (User) et un enseignant (Tutor) : chaque enseignant possède un compte utilisateur lié (One-To-One). Un élève peut effectuer plusieurs réservations (Bookings) de soutien, et émettre des évaluations (Reviews) après le déroulement de la séance.</p>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 18</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 5 (Suite 5) ================= -->
+    <div class="page">
+        <h3 id="conc_sequences">5.6 Diagrammes de séquence UML</h3>
+        <p>Les diagrammes de séquence UML modélisent la dynamique du système, montrant comment les objets interagissent de manière temporelle pour réaliser un scénario d'utilisation :</p>
+        
+        <div class="screenshot-container" style="margin-top: 10px; margin-bottom: 15px;">
+            <img src="sequenc.PNG" alt="Diagramme de Séquence UML" class="screenshot" style="max-height: 250px;">
+            <div class="screenshot-caption">Figure 5.3 — Flux de communication temporel pour la réservation d'un cours.</div>
+        </div>
+
+        <p><strong>Description du flux de connexion (Auth Flow) :</strong></p>
+        <ol>
+            <li>L'utilisateur transmet ses identifiants depuis l'interface web (React).</li>
+            <li>Le frontend envoie une requête POST asynchrone contenant le payload JSON à l'API Laravel.</li>
+            <li>L'API compare le hash bcrypt du mot de passe avec celui stocké en base de données MySQL.</li>
+            <li>Si l'authentification réussit, Laravel Sanctum génère un jeton unique renvoyé en format JSON avec le profil utilisateur.</li>
+            <li>Le client stocke le jeton localement et l'injecte dans les futures requêtes privées.</li>
+        </ol>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 19</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 6 ================= -->
+    <div class="page">
+        <h2 id="chapitre_realisation">Chapitre 6 : Réalisation du projet</h2>
+        <h3 id="real_env">6.1 Environnement de développement et installation</h3>
+        <p>Ce chapitre présente la mise en œuvre technique et l'implémentation de la solution SoutienLocal. Pour mener à bien le développement de la plateforme, nous avons mis en place l'environnement logiciel suivant :</p>
+        
+        <ul>
+            <li><strong>Système d'exploitation :</strong> Machine PC sous Windows 11.</li>
+            <li><strong>Environnement d'exécution :</strong> XAMPP contenant PHP 8.2+ et le serveur de base de données MySQL.</li>
+            <li><strong>Gestionnaire de versions :</strong> Git et la plateforme d'hébergement GitHub pour sécuriser et fusionner nos codes sources respectifs.</li>
+            <li><strong>Éditeur de code source :</strong> Visual Studio Code (VS Code) avec extensions d'auto-complétion (Prettier, ES7+ React snippets).</li>
+            <li><strong>Outils de test d'API :</strong> Postman pour valider le comportement et le format des réponses JSON de notre API REST indépendamment de l'interface client.</li>
+            <li><strong>Gestionnaires de dépendances :</strong> Composer pour les packages backend (Laravel), et NPM pour les packages frontend (React).</li>
+        </ul>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 20</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 6 (Suite) ================= -->
+    <div class="page">
+        <h3 id="real_arbo">6.2 Architecture physique du projet (React/Laravel)</h3>
+        <p>Afin de garantir la propreté et la maintenabilité à long terme de notre code source, nous avons respecté les conventions d'arborescence des frameworks utilisés :</p>
+        
+        <div style="display: flex; gap: 20px; font-size: 9.5pt;">
+            <div style="flex: 1; background: #fdfdfd; padding: 10px; border: 1px solid var(--border-color); border-radius: 5px;">
+                <strong>Frontend (React.js src/) :</strong>
+                <ul>
+                    <li><code>components/</code> : Composants réutilisables (Header, SearchBar, BookingModal).</li>
+                    <li><code>pages/</code> : Vues reliées aux routes (/login, /register, dashboard).</li>
+                    <li><code>context/</code> : États globaux (AuthContext, ToastContext).</li>
+                    <li><code>services/</code> : Communications Axios vers le serveur Laravel.</li>
+                    <li><code>App.js</code> : Définition des routes et de la navigation.</li>
+                    <li><code>index.js</code> : Point d'entrée de l'application SPA.</li>
+                </ul>
+            </div>
+            
+            <div style="flex: 1; background: #fdfdfd; padding: 10px; border: 1px solid var(--border-color); border-radius: 5px;">
+                <strong>Backend (Laravel app/) :</strong>
+                <ul>
+                    <li><code>Http/Controllers/</code> : Gestionnaires de requêtes (TutorController, BookingController).</li>
+                    <li><code>Models/</code> : Modèles d'entités (User.php, Tutor.php, Booking.php).</li>
+                    <li><code>database/migrations/</code> : Fichiers de création des tables.</li>
+                    <li><code>database/seeders/</code> : Données de test locales.</li>
+                    <li><code>routes/api.php</code> : Définition des routes RESTful exposées.</li>
+                </ul>
+            </div>
+        </div>
+        <p style="margin-top: 15px;">Cette séparation nette permet à un développeur travaillant sur l'interface utilisateur de ne pas interférer avec le code de la base de données ou de l'authentification backend.</p>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 21</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 6 (Suite 2) ================= -->
+    <div class="page">
+        <h3 id="real_back">6.3 Implémentation du Backend et API REST</h3>
+        <p>Le backend de l'application expose des endpoints RESTful. L'accès à la base de données est géré par l'ORM Eloquent de Laravel, qui élimine l'écriture directe de requêtes SQL et protège nativement contre les injections SQL grâce aux requêtes préparées.</p>
+        <p>Le snippet ci-dessous montre l'implémentation de la recherche de tuteurs avec filtres optionnels dynamiques :</p>
+        <pre>
+// TutorController.php — Recherche multicritères dynamique
+public function searchTutors(Request $request) {
+    $query = Tutor::query();
+    
+    if ($request->has('city')) {
+        $query->where('city', '=', $request->input('city'));
+    }
+    
+    if ($request->has('subject')) {
+        $query->whereJsonContains('subjects', $request->input('subject'));
+    }
+    
+    if ($request->has('max_price')) {
+        $query->where('price', '<=', $request->input('max_price'));
+    }
+    
+    $tutors = $query->with('user')->get();
+    return response()->json(['success' => true, 'data' => $tutors], 200);
+}
+        </pre>
+        <p>Cette approche permet à l'élève d'affiner sa recherche selon des critères géographiques ou financiers de façon extrêmement rapide.</p>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 22</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 6 (Suite 3) ================= -->
+    <div class="page">
+        <h3 id="real_front">6.4 Implémentation du Frontend et Sécurité</h3>
+        <p>Côté frontend, la communication s'appuie sur le client HTTP <strong>Axios</strong>. Afin d'éviter de passer manuellement le token d'authentification dans chaque appel API, nous avons configuré un intercepteur global Axios :</p>
+        
+        <pre>
+// client-api.js — Configuration globale d'Axios
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: 'http://localhost:8000/api',
+});
+
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
+export default api;
+        </pre>
+        
+        <p><strong>Sécurité :</strong> La communication est ainsi sécurisée de bout en bout. Les routes sensibles du backend (création de réservations, édition de profil) sont protégées par le middleware <code>auth:sanctum</code>, bloquant toute tentative d'appel en cas d'absence de jeton valide.</p>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 23</span>
+        </div>
+    </div>
+
+    <!-- ================= CHAPITRE 7 ================= -->
+    <div class="page">
+        <h2 id="chapitre_tests">Chapitre 7 : Tests, validation et déploiement</h2>
+        <p>La phase de validation du projet s'est articulée autour de trois grandes stratégies de tests pour certifier le bon fonctionnement de la plateforme SoutienLocal :</p>
+        
+        <ul>
+            <li><strong>Tests unitaires (Backend) :</strong> Validation des modèles et de la cohérence de données. Nous avons testé le blocage de comptes avec email dupliqué et l'impossibilité de réserver une séance avec une date passée.</li>
+            <li><strong>Tests de validation d'API (Postman) :</strong> Vérification de la structure et du code statut des réponses (200 OK, 401 Unauthorized, 422 Validation Error) pour toutes les routes de l'API.</li>
+            <li><strong>Tests d'intégration fonctionnels :</strong> Déroulement de scénarios réels de bout en bout (création d'un compte élève &rarr; recherche de professeurs &rarr; soumission de réservation &rarr; confirmation admin).</li>
+        </ul>
+
+        <h3>Résultats des tests</h3>
+        <table>
+            <tr>
+                <th>Module testé</th>
+                <th>Objectif du test</th>
+                <th>Résultat attendu</th>
+                <th>Statut</th>
+            </tr>
+            <tr>
+                <td>Auth Sanctum</td>
+                <td>Refuser l'accès aux réservations sans Token.</td>
+                <td>Erreur HTTP 401</td>
+                <td><span style="color: green; font-weight: bold;">✔ Succès</span></td>
+            </tr>
+            <tr>
+                <td>Filtres Tuteur</td>
+                <td>Rechercher par ville ("Casablanca") et matière.</td>
+                <td>Liste filtrée renvoyée</td>
+                <td><span style="color: green; font-weight: bold;">✔ Succès</span></td>
+            </tr>
+            <tr>
+                <td>Réservation</td>
+                <td>Tenter d'enregistrer une date passée.</td>
+                <td>Erreur HTTP 422</td>
+                <td><span style="color: green; font-weight: bold;">✔ Succès</span></td>
+            </tr>
+        </table>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 24</span>
+        </div>
+    </div>
+
+    <!-- ================= CONCLUSION ET PERSPECTIVES ================= -->
+    <div class="page">
+        <h2 id="conclusion">Conclusion générale et perspectives</h2>
+        <p>Le projet <strong>SoutienLocal</strong> répond à un besoin concret de mise en relation directe dans le domaine de l'éducation. Son développement a permis de consolider nos compétences en ingénierie logicielle (architecture découplée, REST APIs, sécurité applicative et modélisation relationnelle).</p>
+        <p><strong>Perspectives d'avenir :</strong> Intégrer un module de paiement sécurisé (Stripe), et implémenter une messagerie instantanée (WebSockets) pour faciliter le dialogue direct.</p>
+        
+        <h2 id="annexes" style="margin-top: 25px; border-bottom: 2px solid var(--secondary-color);">Annexes — Captures, Installation &amp; Webographie</h2>
+        <div style="display: flex; gap: 15px; margin: 15px 0;">
+            <div style="flex: 1; text-align: center; border: 1px solid var(--border-color); padding: 5px; background: var(--light-gray);">
+                <img src="frontend/public/image/login.PNG" style="max-width: 100%; max-height: 100px; border: 1px solid #ccc;">
+                <div style="font-size: 8pt; font-style: italic;">Connexion</div>
+            </div>
+            <div style="flex: 1; text-align: center; border: 1px solid var(--border-color); padding: 5px; background: var(--light-gray);">
+                <img src="frontend/public/image/ss_catalog.png" style="max-width: 100%; max-height: 100px; border: 1px solid #ccc;">
+                <div style="font-size: 8pt; font-style: italic;">Catalogue</div>
+            </div>
+            <div style="flex: 1; text-align: center; border: 1px solid var(--border-color); padding: 5px; background: var(--light-gray);">
+                <img src="frontend/public/image/Capture.PNG" style="max-width: 100%; max-height: 100px; border: 1px solid #ccc;">
+                <div style="font-size: 8pt; font-style: italic;">Panel Admin</div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px;">
+            <div style="flex: 1;">
+                <p style="font-size: 10pt; font-weight: bold; margin-bottom: 5px;">Lancement rapide :</p>
+                <pre style="font-size: 8pt; padding: 8px; margin: 0; line-height: 1.4;">
+# Backend: cd backend && php artisan serve
+# Frontend: cd frontend && npm start
+                </pre>
+            </div>
+            <div style="flex: 1;">
+                <p style="font-size: 10pt; font-weight: bold; margin-bottom: 5px;">Webographie :</p>
+                <ul style="font-size: 9pt; margin-bottom: 0; padding-left: 15px;">
+                    <li><strong>Laravel API :</strong> <a href="https://laravel.com" target="_blank">laravel.com</a></li>
+                    <li><strong>React Library :</strong> <a href="https://react.dev" target="_blank">react.dev</a></li>
+                    <li><strong>Axios Client :</strong> <a href="https://axios-http.com" target="_blank">axios-http.com</a></li>
+                    <li><strong>MySQL Database :</strong> <a href="https://www.mysql.com" target="_blank">mysql.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-footer">
+            <span>SoutienLocal — Rapport de PFE</span>
+            <span>Page 25</span>
+        </div>
+    </div>
+
+</body>
+
+</html>
